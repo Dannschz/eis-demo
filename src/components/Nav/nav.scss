@@ -1,0 +1,53 @@
+.navAside {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #3b4650 0%, #2f333a 100%);
+
+  .navI {
+    display: flex;
+    .unL {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      .aLink {
+        text-align: center;
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 5px;
+        outline: none;
+        padding: 1.5em;
+        transition: all ease 150ms;
+        color: whitesmoke;
+
+        .navIcon {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          img {
+            width: 3em;
+            height: auto;
+          }
+          span {
+            margin-top: 0.5em;
+          }
+        }
+      }
+
+      .selectedNavLink {
+        pointer-events: none;
+        cursor: default;
+      }
+    }
+  }
+
+  .navI .unL .aLink:hover {
+    background-color: rgba(86, 235, 223, 0.281);
+  }
+
+}
+
+.MuiTooltip-popper {
+  font-size: 1em;
+}

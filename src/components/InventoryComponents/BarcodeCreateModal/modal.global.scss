@@ -1,0 +1,111 @@
+.barcodeCreateModal {
+  display: flex;
+  width: 30%;
+  position: absolute;
+  top: 15%;
+  flex-direction: column;
+  justify-content: center;
+  color: rgb(61, 61, 61);
+  align-items: center;
+  padding: 3em;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 5px 0 rgba(85, 107, 47, 0.507);
+
+  h2 {
+    margin-bottom: 1em;
+  }
+
+  .nameLBC {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    margin-bottom: 1em;
+
+    p {
+      padding: 0.2em;
+      font-size: 1.1em;
+    }
+    input {
+      padding: 0.2em 0.5em;
+      font-size: 1.1em;
+      border-radius: 6px;
+      border: 2px solid rgb(39, 115, 230);
+    }
+  }
+
+  .btnGenCodeModal {
+    width: 100%;
+    padding: 0.8em 0;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.3em;
+    font-weight: 500;
+    margin-bottom: 1em;
+    background-color: rgb(35, 117, 88);
+    color: whitesmoke;
+    cursor: pointer;
+    transition: all ease 150ms;
+
+    &:hover {
+      background-color: rgb(66, 150, 120);
+    }
+
+    &:disabled {
+      background-color: rgb(104, 104, 104);
+      cursor: not-allowed;
+    }
+  }
+
+  .svgI {
+    margin-bottom: 1em;
+  }
+
+  .message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5em;
+    width: 100%;
+    padding: 0.4em 0;
+    border: 2px solid rgb(211, 14, 14);
+    border-radius: 6px;
+    background-color: rgb(247, 175, 175);
+  }
+
+  .buttons {
+    display: flex;
+    width: 100%;
+
+    .btn {
+      padding: 0.5em 0;
+      font-size: 1.3em;
+      border-radius: 6px;
+      color: whitesmoke;
+      transition: all ease 150ms;
+      cursor: pointer;
+
+      &:hover {
+        border-color: rgba(39, 39, 39, 0.336);
+      }
+    }
+
+    .btnCancel {
+      width: 35%;
+      margin-right: 5%;
+      border: 6px solid rgb(202, 18, 18);
+      background-color: rgb(202, 18, 18);
+    }
+    .btnSave {
+      width: 60%;
+      border: 6px solid rgb(63, 172, 49);
+      background-color: rgb(63, 172, 49);
+
+      &:disabled {
+        border: none;
+        background-color: rgb(114, 114, 114);
+        cursor: not-allowed;
+      }
+    }
+  }
+}

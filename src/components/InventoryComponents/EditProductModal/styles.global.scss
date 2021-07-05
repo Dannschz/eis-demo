@@ -1,0 +1,83 @@
+.EditModalProduct {
+  position: absolute;
+  display: flex;
+  top: 12em;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgb(247, 247, 247);
+  border-radius: 5px;
+  width: 35%;
+  box-shadow: 0px 0px 5px 0px rgba(41, 51, 23, 0.562);
+  padding: 1.5em;
+
+  .editModalTitle {
+    font-size: 1.3em;
+    color: darkolivegreen;
+    margin-bottom: 1.5em;
+    width: 100%;
+    text-align: center;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      margin-bottom: 0.5em;
+      p {
+        padding: 0.3em;
+      }
+      input {
+        width: 100%;
+        border-radius: 5px;
+        border: 2px solid rgba(117, 165, 236, 0.507);
+        padding: 0.4em;
+        font-size: 1em;
+        transition: all ease 150ms;
+
+        &:focus {
+          border: 2px solid rgba(43, 113, 219, 0.753);
+          box-shadow: 0 0 2px 2px rgba(43, 113, 219, 0.753);
+        }
+      }
+    }
+
+    .cancelOrSave {
+      display: flex;
+      width: 100%;
+      margin-top: 1em;
+
+      .btn {
+        padding: 0.6em 1em;
+        border-radius: 5px;
+        font-size: 1.1em;
+        font-weight: 500;
+        cursor: pointer;
+      }
+
+      .cancel {
+        width: 35%;
+        margin-right: 4%;
+        border: 2px solid rgb(211, 26, 26);
+        color: rgb(211, 26, 26);
+        transition: all ease 150ms;
+
+        &:hover {
+          background-color: rgb(211, 26, 26);
+          color: whitesmoke;
+        }
+      }
+      .save {
+        width: 60%;
+        border: 2px solid rgb(52, 197, 52);
+        color: rgb(52, 197, 52);
+        transition: all ease 150ms;
+
+        &:hover {
+          background-color: rgb(52, 197, 52);
+          color: whitesmoke;
+        }
+      }
+    }
+  }
+}

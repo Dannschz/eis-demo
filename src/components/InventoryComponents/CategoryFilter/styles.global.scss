@@ -1,0 +1,39 @@
+.CategoryFilterStyles {
+  position: relative;
+  display: flex;
+  width: 40%;
+  line-height: 3;
+  overflow: hidden;
+  border-radius: 0.25em;
+
+  &::-ms-expand {
+    display: none;
+  }
+  & .amountSelect {
+    flex: 1;
+    padding: 0.5em;
+    font-size: 1em;
+    color: #fff;
+    background-color: #2c3e50;
+    cursor: pointer;
+    outline: none;
+  }
+
+  &::after {
+    content: '\25BC';
+    position: absolute;
+    color: burlywood;
+    top: -5px;
+    right: 0;
+    padding: 0 0.5em;
+    background: #34495e;
+    cursor: pointer;
+    pointer-events: none;
+    -webkit-transition: 0.25s all ease;
+    -o-transition: 0.25s all ease;
+    transition: 0.25s all ease;
+  }
+  &:hover::after {
+    color: #f39c12;
+  }
+}

@@ -1,0 +1,111 @@
+.cashboxContainer {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 40%;
+  height: max-content;
+  padding: 2em;
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: 0 0 10px 0 rgba(128, 128, 128, 0.425);
+
+  h2 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 1em;
+  }
+
+  $cash-bg-color: #d9ddf5;
+  $cash-borderR: 9px;
+  $margin-textR: 0.8em;
+  $cash-padding: 0 0.4em 0.1em 0.4em;
+  $cash-color: rgb(82, 82, 82);
+
+  .lineBehind {
+    border-bottom: 1px solid rgba(128, 128, 128, 0.342);
+  }
+
+  .lastSpan {
+    margin-bottom: 3em;
+  }
+
+  .cbc-fieldCash {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 4px;
+    font-weight: 500;
+    padding: 0.3em 0.5em;
+    transition: all ease 150ms;
+
+    &:hover {
+      background-color: #d9ddf5;
+    }
+
+    .cbc-fc-text {
+      // margin-right: $margin-textR;
+    }
+    .cbc-fc-cash {
+      background-color: $cash-bg-color;
+      border-radius: $cash-borderR;
+      padding: $cash-padding;
+      color: $cash-color;
+    }
+  }
+
+  .cbc-report {
+    display: flex;
+    label {
+      display: flex;
+      width: 100%;
+      font-weight: 500;
+      justify-content: space-between;
+      align-items: center;
+      p {
+      }
+      input {
+        width: 4em;
+        font-size: 0.9em;
+        text-align: end;
+        border: 3px solid rgb(70, 103, 211);
+        border-radius: 4px;
+        padding: 0.2em 0.3em;
+      }
+    }
+  }
+
+  .lastReport {
+    margin-top: 1em;
+    margin-bottom: 7em;
+  }
+
+  .reportButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 0.8em 0;
+    font-size: 1.4em;
+    font-weight: 600;
+    border: none;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background-color: #d6dbf1;
+    color: #2a43ce;
+    transition: all ease 250ms;
+    cursor: pointer;
+
+    &:hover {
+      color: #e8ebf8;
+      background-color: #2a43ce;
+    }
+
+    &:disabled {
+      color: #e8ebf8;
+      background-color: grey;
+      cursor: not-allowed;
+    }
+  }
+}

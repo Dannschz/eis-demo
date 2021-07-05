@@ -1,0 +1,69 @@
+.dateSaleSelector {
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  width: 20%;
+  height: max-content;
+  padding: 0.8em;
+  border-radius: 5px;
+  background-color: rgb(233, 233, 233);
+  box-shadow: 0 0 6px 0 rgba(56, 56, 73, 0.473);
+
+  .dss-title {
+    margin-bottom: 1.5em;
+    text-align: center;
+  }
+
+  .dss-select {
+    padding: 0.4em;
+    border: none;
+    border-radius: 6px;
+    margin-bottom: 3em;
+    background-color: rgb(41, 70, 58);
+    color: whitesmoke;
+    font-weight: 500;
+    outline: none;
+  }
+
+  .dss-label {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    span {
+      font-weight: 500;
+      width: 50%;
+    }
+
+    .dss-mesOpt {
+      outline: none;
+      padding: 0.3em;
+      font-weight: 500;
+      background-color: white;
+      border: none;
+      border-radius: 5px;
+      box-shadow: 0 1px 4px 0 rgba(55, 71, 114, 0.315);
+    }
+  }
+
+  .dss-period {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 0.8em;
+
+    p {
+      font-weight: 500;
+      color: rgb(43, 43, 43);
+    }
+
+    .dssPInput {
+      border: none;
+      border-radius: 5px;
+      background-color: white;
+      font-weight: 500;
+      padding: 0.3em;
+      box-shadow: 0 1px 4px 0 rgba(55, 71, 114, 0.315);
+    }
+  }
+}

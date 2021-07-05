@@ -1,0 +1,58 @@
+.InventoryMenuContainer {
+  display: flex;
+  justify-content: center;
+  font-size: 0.9em;
+  .navInsideInventory {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 1em;
+    width: 100%;
+
+    // $bg-color-option: #e3d7f3;
+
+    .navInv {
+      display: flex;
+      width: 10em;
+      height: 9em;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      // background-color: $bg-color-option;
+      color: rgb(61, 61, 61);
+      border-radius: 5px;
+      margin: 0.4em;
+      //border-right: 2px solid rgb(207, 203, 203);
+      text-decoration: none;
+      padding: 0.5em;
+      transition: all ease 150ms;
+      cursor: pointer;
+
+      .icon {
+        img {
+          width: 4.5em;
+        }
+      }
+
+      span {
+        font-size: 1em;
+        font-weight: 600;
+      }
+    }
+
+    // $bg-color-option-hover: #d3bcf0;
+
+    /* .active {
+      background-color: $bg-color-option-hover;
+    } */
+
+    .navInv:hover {
+      // background-color: $bg-color-option-hover;
+      box-shadow: 0 0 6px 0 rgba(77, 77, 77, 0.5);
+    }
+
+    .navInv:last-of-type {
+      margin-right: 0;
+    }
+  }
+}

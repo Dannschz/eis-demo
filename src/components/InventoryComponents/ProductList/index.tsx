@@ -1,0 +1,122 @@
+import { useState, useEffect } from 'react';
+import { useGlobalContext } from '../../../Context/globalState';
+import { ProductT } from '../../../types/inventory';
+// import CategoryFilter from '../CategoryFilter';
+import Product from '../Product';
+import SearchField from '../SearchField';
+import './styles.global.scss';
+
+type ProductListProps = {
+  showOptions?: boolean;
+  entryProduct?: boolean;
+};
+
+function ProductList({
+  showOptions = false,
+  entryProduct = true,
+}: ProductListProps) {
+  const { globalState } = useGlobalContext();
+  const [searchValue, setSearchValue] = useState('');
+  const [regexp, setRegexp] = useState<RegExp | null>(null);
+  const [categoryId, setCategoryId] = useState('');
+  /* const products = categories.map((cat) => {
+    return cat.products;
+  }); */
+
+  const handleSearchValueChange = (e: React.FormEvent<HTMLInputElement>) => {
+    setSearchValue(e.currentTarget.value);
+  };
+
+  /* const handleCategoryValueChange = (e: React.FormEvent<HTMLSelectElement>) => {
+    setCategoryId(e.currentTarget.value);
+  }; */
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+  useEffect(() => {
+    // eslint-disable-next-line no-console
+    /* function isSearchValueEmpty() {
+      if (searchValue)
+    }
+    isSearchValueEmpty(); */
+    setRegexp(new RegExp(`\\b${searchValue}`, 'i'));
+    // console.log(regexSearch);
+  }, [searchValue]);
+
+  return (
+    <>
+      <div className="searchAndFilter">
+        <SearchField
+          searchValue={searchValue}
+          handleSearchValueChange={handleSearchValueChange}
+        />
+        {/* <CategoryFilter
+          categories={categories}
+          handleCategoryChange={handleCategoryValueChange}
+        /> */}
+      </div>
+      <div className="ProductList">
+        <div
+          className={`ProductListHeader ${
+            showOptions ? 'showOpts' : 'hideOpts'
+          }`}
+        >
+          <div className="barC">
+            <span className="bar"></span>
+          </div>
+          <span>Descripción</span>
+          <span>Código</span>
+          <span>Precio (pieza/kg)</span>
+          <span>Existencia</span>
+          {showOptions && (
+            <>
+              <div className="bulto"></div>
+              <div className="bulto"></div>
+            </>
+          )}
+        </div>
+        {categoryId === ''
+          ? Array.from(globalState.categories.values()).map((cat) => {
+              return Array.from(cat.products.values()).map((p: ProductT) => {
+                return regexp?.test(`${p.name} ${p.barcode}`) ? (
+                  <Product
+                    key={p._id}
+                    productId={p._id}
+                    barcode={p.barcode}
+                    name={p.name}
+                    amount={p.amount}
+                    amountType={p.amountType}
+                    measure={p.measure}
+                    price={p.price}
+                    soldPieces={p.soldPieces}
+                    categoryId={cat._id}
+                    showEAD={showOptions}
+                    entryProduct={entryProduct}
+                  />
+                ) : null;
+              });
+            })
+          : Array.from(globalState.products.values()).map((p: ProductT) => {
+              return regexp?.test(`${p.name} ${p.barcode}`) ? (
+                <Product
+                  key={p._id}
+                  productId={p._id}
+                  barcode={p.barcode}
+                  name={p.name}
+                  amount={p.amount}
+                  amountType={p.amountType}
+                  measure={p.measure}
+                  price={p.price}
+                  soldPieces={p.soldPieces}
+                  categoryId={globalState.categories.get(categoryId)._id}
+                  showEAD={showOptions}
+                  entryProduct={entryProduct}
+                />
+              ) : null;
+            })}
+        {}
+      </div>
+    </>
+  );
+}
+
+export default ProductList;

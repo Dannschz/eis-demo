@@ -1,0 +1,49 @@
+.depositoC {
+  display: flex;
+  width: 85%;
+  flex-direction: column;
+  align-items: center;
+
+  .outAmount {
+    .outA-sep {
+      input {
+        border-color: rgb(31, 102, 150);
+        transition: all ease 150ms;
+
+        &:focus {
+          box-shadow: 0 0 6px 0 rgb(31, 102, 150);
+        }
+      }
+    }
+  }
+
+  .depositoBtn {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border: none;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    padding: 0.8em 0;
+    font-size: 1.6em;
+    font-weight: 600;
+    background-color: rgb(205, 214, 240);
+    color: rgb(31, 102, 150);
+    cursor: pointer;
+    transition: all ease 200ms;
+
+    &:hover {
+      background-color: rgb(31, 102, 150);
+      color: rgb(231, 235, 247);
+    }
+
+    &:disabled {
+      background-color: grey;
+      color: whitesmoke;
+      cursor: not-allowed;
+    }
+  }
+}

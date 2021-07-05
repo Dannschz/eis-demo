@@ -1,0 +1,14 @@
+.barcodeList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  // gap: 0.8em 0;
+  justify-content: center;
+  width: 85%;
+  height: 80vh;
+  padding: 1em;
+  margin: 0.5em 0;
+  background-color: white;
+  border-radius: 4px;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}

@@ -1,0 +1,49 @@
+.homeNavContainer {
+  display: flex;
+  justify-content: center;
+  height: max-content;
+  margin-top: 10em;
+
+  .hnc-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 1em;
+    width: 100%;
+
+    $bg-color-option: rgb(214, 233, 243);
+
+    .hnc-link {
+      display: flex;
+      width: 13em;
+      height: 11em;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      background-color: $bg-color-option;
+      color: rgb(61, 61, 61);
+      border-radius: 5px;
+      margin: 0.4em;
+      //border-right: 2px solid rgb(207, 203, 203);
+      text-decoration: none;
+      padding: 0.5em;
+      transition: all ease 150ms;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgb(201, 227, 241);
+      }
+
+      .icon {
+        img {
+          width: 4.5em;
+        }
+      }
+
+      span {
+        font-size: 1.4em;
+        font-weight: 600;
+      }
+    }
+  }
+}

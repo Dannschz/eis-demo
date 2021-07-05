@@ -1,0 +1,24 @@
+.EditSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 5em;
+}
+
+.deleteMessage {
+  display: flex;
+  width: 75%;
+  position: absolute;
+  top: -3em;
+  justify-content: center;
+  align-items: center;
+  padding: 0.4em 1em;
+  background-color: rgb(92, 207, 92);
+  border-radius: 3px;
+  & p {
+    font-size: 1em;
+    color: whitesmoke;
+  }
+}

@@ -1,0 +1,37 @@
+.ticketLine {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  width: 100%;
+  font-weight: 500;
+  background-color: #aed2f338;
+  box-shadow: 0 1px 3px 0 #23588938;
+  cursor: pointer;
+  transition: all ease 100ms;
+
+  &:hover {
+    background-color: #5db5d867;
+  }
+
+  .tl-child {
+    width: 100%;
+    padding: 0.5em 0;
+    text-align: center;
+    border-right: 2px solid #a6c9e938;
+  }
+
+  .tl-child:last-of-type {
+    border-right: none;
+  }
+
+  .ticketLineInput {
+    display: none;
+  }
+}
+
+.selected {
+  background-color: rgb(138, 241, 164);
+
+  &:hover {
+    background-color: rgb(138, 241, 164);
+  }
+}

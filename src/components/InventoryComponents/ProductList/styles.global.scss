@@ -1,0 +1,80 @@
+.ProductList {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 0.9em;
+  max-height: 70vh;
+  overflow-y: scroll;
+
+  .showOpts {
+    grid-template-columns: 4px 4fr 2fr 1.6fr 1fr 0.2fr 0.2fr;
+  }
+
+  .hideOpts {
+    grid-template-columns: 4px 4fr 2fr 1.6fr 1fr;
+  }
+
+  .ProductListHeader {
+    display: grid;
+    position: sticky;
+    top: 0;
+    position: -webkit-sticky;
+    width: 100%;
+    gap: 5px;
+    padding: 0.6em;
+    color: whitesmoke;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-weight: 500;
+    background-color: rgb(77, 68, 153);
+
+    & span:first-of-type {
+      padding-left: 0.5em;
+    }
+
+    .barC {
+      .bar {
+        margin: 0;
+        padding: 0;
+        width: 4px;
+      }
+    }
+
+    .bulto {
+      width: 1.5em;
+      height: 1.5em;
+    }
+  }
+}
+.searchAndFilter {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 2em;
+}
+
+::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(48, 47, 47, 0.3);
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  visibility: hidden;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  background: rgba(10, 44, 78, 0.288);
+  box-shadow: inset 0 0 6px rgba(63, 112, 202, 0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(61, 57, 57, 0.4);
+}

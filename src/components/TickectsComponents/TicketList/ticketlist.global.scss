@@ -1,0 +1,41 @@
+.tl-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0.3em 0;
+  background-color: rgb(97, 97, 182);
+  color: whitesmoke;
+}
+
+.tl-header {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  background-color: rgba(194, 215, 247, 0.212);
+  font-weight: 500;
+
+  .tlh-child {
+    width: 100%;
+    padding: 0.2em 0;
+    text-align: center;
+    border-right: 2px solid #a6c9e938;
+  }
+  .tlh-child:last-of-type {
+    border-right: none;
+  }
+}
+
+.tl-periodSold {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 0.6em 0;
+  background-color: rgb(205, 241, 219);
+  font-size: 1.2em;
+  font-weight: 500;
+}

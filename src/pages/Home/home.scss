@@ -1,0 +1,11 @@
+.homeSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3em;
+
+  .hs-title {
+    font-size: 2.2em;
+    margin-bottom: 2em;
+  }
+}

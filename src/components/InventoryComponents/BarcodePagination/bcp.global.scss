@@ -1,0 +1,41 @@
+.barcodePagination {
+  display: flex;
+  justify-content: center;
+  width: 85%;
+
+  .bp-ul {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    .bp-label {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.4em 0.8em;
+      border-radius: 5px;
+      margin-right: 0.2em;
+      background-color: white;
+      font-weight: 500;
+      color: rgb(46, 46, 46);
+      border: 2px solid rgb(155, 163, 206);
+      cursor: pointer;
+      transition: all ease 150ms;
+
+      p {
+      }
+
+      .bp-ul-number {
+        display: none;
+        visibility: hidden;
+      }
+    }
+    .bp-label-active {
+      border: 2px solid rgb(110, 122, 190);
+      box-shadow: 0 0 5px 0 rgba(65, 80, 170, 0.651);
+      background-color: rgba(65, 81, 170, 0.534);
+      color: white;
+      transition: all ease 150ms;
+    }
+  }
+}

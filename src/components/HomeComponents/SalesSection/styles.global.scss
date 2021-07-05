@@ -1,0 +1,12 @@
+.homeSellSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .sellSectionTitle {
+    align-self: flex-start;
+    font-size: 2em;
+    margin-bottom: 1em;
+    font-weight: 700;
+  }
+}

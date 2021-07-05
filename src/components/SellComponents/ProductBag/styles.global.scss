@@ -1,0 +1,105 @@
+.productBagContainer {
+  display: grid;
+  grid-template-columns: 5fr 1.6fr 2fr 1.6fr 0.5fr;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4em;
+  font-weight: 500;
+  border-bottom: 2px solid rgb(226, 226, 226);
+  color: rgb(75, 75, 75);
+  transition: all ease 130ms;
+
+  &:hover {
+    background-color: rgb(222, 231, 236);
+  }
+
+  $font-size-a: 0.9em;
+
+  .namePB {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: baseline;
+    h3 {
+      font-size: $font-size-a;
+    }
+  }
+  .pricePB {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    // padding: 0.5em 0;
+    font-size: $font-size-a;
+
+    p {
+      width: max-content;
+      font-size: 1em;
+      margin: 0;
+      margin-left: 0.5em;
+      padding: 0 0.2em 0.1em 0.2em;
+      background-color: aliceblue;
+      border: 1px solid rgba(114, 114, 114, 0.322);
+      border-radius: 3px;
+    }
+  }
+
+  .bagAmount {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    .ba-ia {
+      width: 3em;
+      text-align: center;
+      margin-right: 0.4em;
+      font-size: 0.9em;
+      border: 2px solid rgb(80, 169, 214);
+      border-radius: 4px;
+      padding: 0.1em;
+
+      &::-webkit-outer-spin-button {
+        appearance: none;
+        margin: 0;
+      }
+      &::-webkit-inner-spin-button {
+        appearance: none;
+        margin: 0;
+      }
+    }
+    .amountDisbaled {
+      width: fit-content;
+      border-radius: 4px;
+      padding: 0.1em 0.3em 0.2em 0.3em;
+      font-size: 0.9em;
+      background-color: rgb(243, 243, 243);
+      border: 1px solid gainsboro;
+    }
+  }
+
+  .pricePerAmount {
+    width: 100%;
+    font-size: $font-size-a;
+  }
+
+  .removeProduct {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+    border: none;
+    background-color: inherit;
+    width: 1.9em;
+    cursor: pointer;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .rp-hide {
+    visibility: hidden;
+  }
+
+  &:hover .rp-show {
+    visibility: visible;
+  }
+}

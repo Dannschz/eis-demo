@@ -1,0 +1,89 @@
+.entryProductModal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 1em;
+  border-radius: 5px;
+  padding: 3em;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0 5px 1px rgba(47, 79, 79, 0.466);
+
+  h2 {
+    margin-bottom: 1em;
+  }
+
+  label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2em;
+    span {
+      margin-right: 0.5em;
+      font-size: 1.4em;
+    }
+    .amountEntryInput {
+      border: 2px solid rgba(25, 76, 185, 0.63);
+      border-radius: 5px;
+      padding: 0.4em 0.5em;
+      font-size: 1.2em;
+      text-align: center;
+      width: 4em;
+      margin-right: 0.5em;
+    }
+
+    .gop {
+      font-size: 1.4em;
+    }
+  }
+
+  .buttonsOption {
+    display: flex;
+    width: 100%;
+
+    .btnE {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.8em 0;
+      border-radius: 5px;
+      font-size: 1.2em;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    $cancel-add-and-border: rgb(207, 15, 15);
+    $finish-add-and-border: rgb(20, 145, 228);
+
+    .btnCancel {
+      width: 40%;
+      margin-right: 5%;
+      color: $cancel-add-and-border;
+      border: 2px solid $cancel-add-and-border;
+      background-color: whitesmoke;
+
+      &:hover {
+        background-color: $cancel-add-and-border;
+        color: whitesmoke;
+      }
+    }
+    .btnAdd {
+      width: 55%;
+      color: $finish-add-and-border;
+      border: 2px solid $finish-add-and-border;
+      background-color: whitesmoke;
+
+      &:hover {
+        background-color: $finish-add-and-border;
+        color: whitesmoke;
+      }
+
+      &:disabled {
+        background-color: gray;
+        border-color: grey;
+        color: rgb(78, 78, 78);
+        cursor: not-allowed;
+      }
+    }
+  }
+}

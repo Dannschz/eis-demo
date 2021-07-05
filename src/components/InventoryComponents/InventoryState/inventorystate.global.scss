@@ -1,0 +1,50 @@
+.inventoryState {
+  display: flex;
+  width: 55%;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5em;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 0 6px 0 rgba(79, 78, 85, 0.233);
+  margin-top: 3em;
+
+  h2 {
+    font-size: 1.2em;
+    margin-bottom: 1em;
+  }
+
+  .is-content {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+
+    .isc-item {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 4px;
+      padding: 0.4em 0.8em;
+      margin-bottom: 0.8em;
+      font-size: 1em;
+      transition: all ease 180ms;
+
+      &:hover {
+        background-color: rgb(190, 204, 229);
+      }
+
+      .isci-text {
+      }
+
+      .isci-number {
+        font-weight: 500;
+        background-color: rgb(239, 219, 243);
+        padding: 0.1em 0.4em;
+        border-radius: 5px;
+        text-align: center;
+      }
+    }
+  }
+}

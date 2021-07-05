@@ -1,0 +1,44 @@
+.usefulButton {
+  display: flex;
+  align-items: center;
+
+  /* $purple-color: rgb(97, 72, 190);
+  $green-color: rgb(23, 184, 50);
+  $blue-color: rgb(35, 93, 216); */
+
+  .buttonBody {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    font-weight: 500;
+    border-radius: 8px;
+    // background-color: rgb(144, 75, 209);
+    transition: all ease 150ms;
+    cursor: pointer;
+
+    &:disabled {
+      border-color: rgb(109, 109, 109);
+      background-color: rgb(109, 109, 109);
+      cursor: not-allowed;
+
+      p {
+        color: whitesmoke;
+      }
+    }
+  }
+
+  .withIcon {
+    img {
+      width: 11%;
+      margin-left: 1em;
+      margin-right: 2em;
+    }
+  }
+
+  .withoutIcon {
+    justify-content: center;
+    img {
+      width: 14%;
+    }
+  }
+}
