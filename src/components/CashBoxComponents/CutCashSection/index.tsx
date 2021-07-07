@@ -1,11 +1,12 @@
 /* eslint-disable no-underscore-dangle */
-import { useGlobalContext } from '../../../Context/globalState';
-import BackButtonLink from '../../Utils/BackButtonLink/BackButtonLink';
-import CashBox from '../CashBox';
-import './cutsection.global.scss';
+import { useGlobalContext } from '../../../Context/globalState'
+import BackButtonLink from '../../Utils/BackButtonLink/BackButtonLink'
+import CashBox from '../CashBox'
+import { caja } from '../../../utils/strRoutes'
+import './cutsection.global.scss'
 
 function CutCashSection() {
-  const { globalState, dispatch } = useGlobalContext();
+  const { globalState, dispatch } = useGlobalContext()
 
   return (
     <section className="cutCashSection">
@@ -14,9 +15,9 @@ function CutCashSection() {
         sellerId={globalState.user._id ? globalState.user._id : ''}
         dispatch={dispatch}
       />
-      <BackButtonLink />
+      <BackButtonLink to={caja} />
     </section>
-  );
+  )
 }
 
-export default CutCashSection;
+export default CutCashSection

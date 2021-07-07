@@ -1,92 +1,131 @@
 /* eslint-disable react/require-default-props */
-import { useState, useRef, createRef } from 'react';
-import './styles.global.scss';
-import { useGlobalContext } from '../../../Context/globalState';
-import { AmountType, MeasureType } from '../../../types/inventory';
+import { useState, useRef, createRef } from 'react'
+import './styles.global.scss'
+import { useGlobalContext } from '../../../Context/globalState'
+import { AmountType, MeasureType } from '../../../types/inventory'
+import InfoMessage from '../../Utils/InfoMessage'
 
 type RegisterProductProps = {
-  barcode?: string;
-  name?: string;
-};
+  barcode?: string
+  name?: string
+}
 
 function RegisterProductForm({
   barcode = '',
-  name = '',
+  name = ''
 }: RegisterProductProps) {
-  const [barcodeValue, setBarcode] = useState<string>(barcode);
-  const [nameValue, setName] = useState(name);
-  const [amountValue, setAmount] = useState<number | string>('');
-  const [measure, setMeasure] = useState<MeasureType>(MeasureType.default);
-  const [amountType, setAmountType] = useState<AmountType>(AmountType.pieza);
-  const [price, setPrice] = useState<number | string>('');
-  const [categoryType, setCategoryType] = useState('existente');
-  const [categoryOption, setcategoryOption] = useState('');
-  const [categoryName, setCategoryName] = useState('');
-  const { globalState } = useGlobalContext();
-  const categoryOptionInputRef = useRef<HTMLInputElement>(null);
-  const barcodeInputRef = createRef<HTMLInputElement>();
+  const [barcodeValue, setBarcode] = useState<string>(barcode)
+  const [nameValue, setName] = useState(name)
+  const [amountValue, setAmount] = useState<number | string>('')
+  const [measure, setMeasure] = useState<MeasureType>(MeasureType.default)
+  const [amountType, setAmountType] = useState<AmountType>(AmountType.pieza)
+  const [price, setPrice] = useState<number | string>('')
+  const [categoryType, setCategoryType] = useState('existente')
+  const [categoryOption, setcategoryOption] = useState('')
+  const [categoryName, setCategoryName] = useState('')
+  const { globalState } = useGlobalContext()
+  const categoryOptionInputRef = useRef<HTMLInputElement>(null)
+  const barcodeInputRef = createRef<HTMLInputElement>()
+  const formRef = createRef<HTMLFormElement>()
+
+  const [showInfoMessage, setInfoMessage] = useState({
+    message: '',
+    show: false
+  })
 
   // handle Input Events
   const onChangeBarcode = (e: React.FormEvent<HTMLInputElement>) => {
-    setBarcode(e.currentTarget.value);
-  };
+    setBarcode(e.currentTarget.value)
+  }
 
   const onChangeName = (e: React.FormEvent<HTMLInputElement>) => {
-    setName(e.currentTarget.value);
-  };
+    setName(e.currentTarget.value)
+  }
 
   const onChangeAmount = (e: React.FormEvent<HTMLInputElement>) => {
-    setAmount(e.currentTarget.value);
-  };
+    setAmount(e.currentTarget.value)
+  }
 
   const onChangePrice = (e: React.FormEvent<HTMLInputElement>) => {
-    setPrice(e.currentTarget.value);
-  };
+    setPrice(e.currentTarget.value)
+  }
 
   const handleMeasureChange = (e: React.FormEvent<HTMLInputElement>) => {
-    setMeasure(e.currentTarget.value as MeasureType);
-  };
+    setMeasure(e.currentTarget.value as MeasureType)
+  }
 
   const handleAmountType = (e: React.FormEvent<HTMLInputElement>) => {
     if (e.currentTarget.value === AmountType.granel) {
-      setMeasure(MeasureType.kg);
+      setMeasure(MeasureType.kg)
     }
     if (e.currentTarget.value === AmountType.pieza) {
-      setMeasure(MeasureType.default);
+      setMeasure(MeasureType.default)
     }
-    setAmountType(e.currentTarget.value as AmountType);
-  };
+    setAmountType(e.currentTarget.value as AmountType)
+  }
 
   const handleCategoryOptionChange = (
     e: React.FormEvent<HTMLSelectElement>
   ) => {
-    setcategoryOption(e.currentTarget.value);
-    setCategoryName(e.currentTarget.value);
-  };
+    setcategoryOption(e.currentTarget.value)
+    setCategoryName(e.currentTarget.value)
+  }
 
   const handleCategoryType = (e: React.FormEvent<HTMLInputElement>) => {
-    setCategoryType(e.currentTarget.value);
-    setCategoryName('');
-  };
+    setCategoryType(e.currentTarget.value)
+    setCategoryName('')
+  }
 
   const handleCategoryName = (e: React.FormEvent<HTMLInputElement>) => {
-    setCategoryName(e.currentTarget.value);
-  };
+    setCategoryName(e.currentTarget.value)
+  }
 
-  const handleClickRegister = () => {
-    setBarcode('');
-    setName('');
-    setAmount(0);
-    setPrice('');
-    setCategoryName('');
-    barcodeInputRef.current?.focus();
-  };
+  const handleClickRegister = async () => {
+    setBarcode('')
+    setName('')
+    setAmount(0)
+    setPrice('')
+    setCategoryName('')
+    barcodeInputRef.current?.focus()
+    const response = await fetch(
+      `${
+        process.env.NODE_ENV === 'development'
+          ? 'http://localhost:4000/newproduct'
+          : 'https://eis-ddemo.herokuapp.com/newproduct'
+      }`,
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          nameValue,
+          barcodeValue,
+          amountValue,
+          amountType,
+          price,
+          measure,
+          soldPieces: 0,
+          categoryType,
+          categoryName
+        }),
+        headers: { 'Content-Type': 'application/json' },
+        mode: 'cors'
+      }
+    )
+    const { message } = await response.json()
+    if (message === 'created') {
+      setInfoMessage({ message: 'Se registro el Producto', show: true })
+    } else {
+      setInfoMessage({
+        message: 'No se pudo registrar el Producto',
+        show: true
+      })
+    }
+  }
 
   const requiredValues = (...args: Array<string | number>): boolean => {
     // console.log(args);
     // eslint-disable-next-line eqeqeq
-    return args.some((value) => !!value === false);
-  };
+    return args.some((value) => !!value === false)
+  }
 
   // life cycle
   /* useEffect(() => {
@@ -96,6 +135,7 @@ function RegisterProductForm({
   return (
     <>
       <form
+        ref={formRef}
         id="regForm"
         className={`regFormC ${barcode && name ? 'isModal' : ''}`}
       >
@@ -159,7 +199,7 @@ function RegisterProductForm({
             style={{
               display: 'flex',
               justifyContent: 'start',
-              alignItems: 'center',
+              alignItems: 'center'
             }}
           >
             <label className="labelBC" htmlFor="cantidadID">
@@ -269,7 +309,7 @@ function RegisterProductForm({
                     <option key={cat._id} value={cat.name}>
                       {cat.name}
                     </option>
-                  );
+                  )
                 })}
               </select>
             </div>
@@ -296,8 +336,14 @@ function RegisterProductForm({
           Registrar Producto
         </button>
       </form>
+      {showInfoMessage.show && (
+        <InfoMessage
+          message={showInfoMessage.message}
+          setValue={setInfoMessage}
+        />
+      )}
     </>
-  );
+  )
 }
 
-export default RegisterProductForm;
+export default RegisterProductForm

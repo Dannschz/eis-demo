@@ -1,73 +1,73 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useEffect, useRef, useState } from 'react';
-import { Dispatch } from '../../../Context/globalState';
-import { ProductBagClass } from '../../../types/sell';
-import BagSellModal from '../BagSellModal';
-import ProductBag from '../ProductBag';
-import checkedSellIcon from '../../../img/checkedSell.svg';
-import './styles.global.scss';
+import React, { useEffect, useRef, useState } from 'react'
+import { Dispatch } from '../../../Context/globalState'
+import { ProductBagClass } from '../../../types/sell'
+import BagSellModal from '../BagSellModal'
+import ProductBag from '../ProductBag'
+import checkedSellIcon from '../../../img/checkedSell.svg'
+import './styles.global.scss'
 
 type ShoppingBagProps = {
-  productsToSell: ProductBagClass;
-  dispatch: Dispatch;
-};
+  productsToSell: ProductBagClass
+  dispatch: Dispatch
+}
 
 function ShoppingBag({ productsToSell, dispatch }: ShoppingBagProps) {
-  const [showBagModal, setShowBagModal] = useState(false);
-  const [showMessageDone, setShowMessageDone] = useState(false);
-  const [saveSellDone, setSaveSellDone] = useState(false);
-  const messageRef = useRef<HTMLDivElement>(null);
+  const [showBagModal, setShowBagModal] = useState(false)
+  const [showMessageDone, setShowMessageDone] = useState(false)
+  const [saveSellDone, setSaveSellDone] = useState(false)
+  const messageRef = useRef<HTMLDivElement>(null)
 
   const handlePayButton = () => {
-    setShowBagModal(!showBagModal);
+    setShowBagModal(!showBagModal)
     // console.log(productsToSell);
-  };
+  }
 
   const handleCancelButtonChild = () => {
-    setShowBagModal(false);
-  };
+    setShowBagModal(false)
+  }
 
-  const handleFinishSellButtonChild = () => {
-  };
+  const handleFinishSellButtonChild = () => {}
 
   const handleCleanButton = () => {
-    dispatch({ type: 'CLEAN_BAG' });
-  };
+    dispatch({ type: 'CLEAN_BAG' })
+  }
 
   const showSellDoneMessage = (): React.ReactNode => {
     if (showMessageDone && saveSellDone) {
       setTimeout(() => {
-        messageRef.current?.classList.remove('showMessage');
-        messageRef.current?.classList.add('ocultMessage');
-      }, 2000);
+        messageRef.current?.classList.remove('showMessage')
+        messageRef.current?.classList.add('ocultMessage')
+      }, 2000)
       setTimeout(() => {
-        setShowMessageDone(false);
-      }, 2500);
+        setShowMessageDone(false)
+      }, 2500)
       return (
         <div ref={messageRef} className="sellDoneMessage showMessage">
           <p>Venta finalizada</p>
           <img src={checkedSellIcon} alt="ok" />
         </div>
-      );
+      )
     }
-    return null;
-  };
+    return null
+  }
 
   const handleSetSellMessageFromParent = () => {
-    setShowMessageDone(true);
-  };
+    setShowMessageDone(true)
+  }
 
-  useEffect(() => {
-  }, []);
+  useEffect(() => {}, [])
 
   return (
     <div className="shoppingBagMain">
       <div className="shoppingBagSell">
-        <div className="headerGridShop">
-          <span>Producto</span>
-          <span>$ por unidad</span>
-          <span>Cantidad</span>
-          <span>Importe</span>
+        <div className="hgs-c">
+          <div className="headerGridShop">
+            <span>Producto</span>
+            <span>$ por unidad</span>
+            <span>Cantidad</span>
+            <span>Importe</span>
+          </div>
         </div>
         {Object.values(productsToSell.products).map((value) => {
           return (
@@ -81,7 +81,7 @@ function ShoppingBag({ productsToSell, dispatch }: ShoppingBagProps) {
               measure={value.measure}
               bagAmount={value.bagAmount}
             />
-          );
+          )
         })}
         <div className="totalAmount">
           <span>{`Total: $${productsToSell.getTotal()}`}</span>
@@ -119,7 +119,7 @@ function ShoppingBag({ productsToSell, dispatch }: ShoppingBagProps) {
         />
       )}
     </div>
-  );
+  )
 }
 
-export default ShoppingBag;
+export default ShoppingBag

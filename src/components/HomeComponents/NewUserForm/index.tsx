@@ -1,33 +1,34 @@
 /* eslint-disable func-names */
-import { ChangeEvent, useEffect, useState } from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import './newuser.global.scss';
-import UsefulButton from '../../Utils/UsefulButton';
+import { ChangeEvent, useEffect, useState } from 'react'
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
+import InputLabel from '@material-ui/core/InputLabel'
+import MenuItem from '@material-ui/core/MenuItem'
+import FormControl from '@material-ui/core/FormControl'
+import Select from '@material-ui/core/Select'
+import './newuser.global.scss'
+import UsefulButton from '../../Utils/UsefulButton'
 // import { UserRol } from '../../../types/userprofile';
 // import hashPassword from '../../../utils/hashPassword';
-import BackButtonLink from '../../Utils/BackButtonLink/BackButtonLink';
+import BackButtonLink from '../../Utils/BackButtonLink/BackButtonLink'
+import { users } from '../../../utils/strRoutes'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     formControl: {
       margin: theme.spacing(0),
       minWidth: 120,
-      backgroundColor: 'white',
+      backgroundColor: 'white'
     },
     selectEmpty: {
-      marginTop: theme.spacing(2),
-    },
+      marginTop: theme.spacing(2)
+    }
   })
-);
+)
 
 enum RolUpercase {
   Administrador = 'Administrador',
   Vendedor = 'Vendedor',
-  vacio = '',
+  vacio = ''
 }
 
 /* type NewUserFormProps = {
@@ -35,29 +36,29 @@ enum RolUpercase {
 }; */
 
 function NewUserForm() {
-  const classes = useStyles();
+  const classes = useStyles()
   const idGenerator = (): string => {
-    return String(Math.floor(Math.random() * (999999 - 100000) + 100000));
-  };
+    return String(Math.floor(Math.random() * (999999 - 100000) + 100000))
+  }
 
-  const [idValue, setId] = useState('');
-  const [nameValue, setNameValue] = useState('');
-  const [rolValue, setRolValue] = useState<RolUpercase>('' as RolUpercase);
-  const [passwordValue, setPasswordValue] = useState('');
+  const [idValue, setId] = useState('')
+  const [nameValue, setNameValue] = useState('')
+  const [rolValue, setRolValue] = useState<RolUpercase>('' as RolUpercase)
+  const [passwordValue, setPasswordValue] = useState('')
 
   const handleChangeNameValue = (e: React.FormEvent<HTMLInputElement>) => {
-    setNameValue(e.currentTarget.value);
-  };
+    setNameValue(e.currentTarget.value)
+  }
 
   const handleChangeRolValue = (e: ChangeEvent<{ value: unknown }>) => {
-    setRolValue(e.target.value as RolUpercase);
-  };
+    setRolValue(e.target.value as RolUpercase)
+  }
 
   const handleChangePasswordValue = (e: React.FormEvent<HTMLInputElement>) => {
-    setPasswordValue(e.currentTarget.value);
-  };
+    setPasswordValue(e.currentTarget.value)
+  }
 
-  const handleRegisterButtonClick = async () => {};
+  const handleRegisterButtonClick = async () => {}
 
   const isButtonDisabled = (): boolean => {
     return (
@@ -65,12 +66,12 @@ function NewUserForm() {
         rolValue !== RolUpercase.Vendedor) ||
       nameValue === '' ||
       passwordValue === ''
-    );
-  };
+    )
+  }
 
   useEffect(() => {
-    setId(idGenerator());
-  }, []);
+    setId(idGenerator())
+  }, [])
 
   return (
     <div className="newUserFormContainer">
@@ -137,9 +138,9 @@ function NewUserForm() {
           Registrar
         </UsefulButton>
       </form>
-      <BackButtonLink />
+      <BackButtonLink to={users} />
     </div>
-  );
+  )
 }
 
-export default NewUserForm;
+export default NewUserForm

@@ -1,5 +1,5 @@
-import React from 'react';
 import { useGlobalContext } from '../../../Context/globalState';
+import { caja } from '../../../utils/strRoutes';
 import BackButtonLink from '../../Utils/BackButtonLink/BackButtonLink';
 import Deposito from '../Deposito';
 import Retiro from '../Retiro';
@@ -19,7 +19,7 @@ function InOutCashSection() {
           <Deposito dispatch={dispatch} />
         </div>
       </div>
-      <BackButtonLink />
+      <BackButtonLink to={caja} />
     </section>
   );
 }

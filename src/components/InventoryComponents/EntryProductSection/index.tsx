@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { inventario } from '../../../utils/strRoutes';
 // import { useGlobalContext } from '../../../Context/globalState';
 import BackButtonLink from '../../Utils/BackButtonLink/BackButtonLink';
 import ProductList from '../ProductList';
@@ -12,7 +13,7 @@ function EntryProductSection() {
 
   return (
     <div className="entryProductSection">
-      <BackButtonLink />
+      <BackButtonLink to={inventario} />
       <h2 className="entryTitle">Entrada de Mercancía</h2>
       <ProductList />
     </div>

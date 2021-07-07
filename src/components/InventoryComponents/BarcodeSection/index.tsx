@@ -1,5 +1,4 @@
-/* eslint-disable new-cap */
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 // import { saveAs } from 'file-saver';
 // import domtoimage from 'dom-to-image';
 import { BarcodesArray } from '../../../types/inventory';
@@ -11,16 +10,12 @@ import BarcodeCreateModal from '../BarcodeCreateModal';
 import BackButtonLink from '../../Utils/BackButtonLink/BackButtonLink';
 import UsefulButton from '../../Utils/UsefulButton';
 import BarcodePagination from '../BarcodePagination';
-import InfoMessage from '../../Utils/InfoMessage';
+import { inventario } from '../../../utils/strRoutes';
 
 function BarcodeSection() {
   const [barcodes, setBarcodes] = useState<BarcodesArray>([]);
   const [showGenModal, setShowGenModal] = useState(false);
   const [pageSelected, setPage] = useState(1);
-  const [savePdfMessage, setSavePdfMessage] = useState({
-    show: false,
-    message: '',
-  });
 
   const maxItems = 24;
 
@@ -69,22 +64,11 @@ function BarcodeSection() {
     );
   };
 
-  const showPdfSaveMessage = (): React.ReactNode => {
-    if (savePdfMessage.show) {
-      setTimeout(() => {
-        setSavePdfMessage({ show: false, message: '' });
-      }, 2500);
-      return <InfoMessage message={savePdfMessage.message} />;
-    }
-    return null;
-  };
-
   useEffect(() => {
   }, []);
 
   return (
     <div className="section barcodeSection">
-      {showPdfSaveMessage()}
       <div className="btnOptions">
         <UsefulButton
           img={btnBarcodeIcon}
@@ -116,7 +100,7 @@ function BarcodeSection() {
         pages={pages}
         handleSetPageFromParent={handleSetPage}
       />
-      <BackButtonLink />
+      <BackButtonLink to={inventario} />
     </div>
   );
 }

@@ -1,16 +1,27 @@
-import React from 'react';
-import './info.global.scss';
+import { useEffect } from 'react'
+import './info.global.scss'
 
 type InfoMessageProps = {
-  message: string;
-};
+  message: string
+  setValue: ({ message, show }: { message: string; show: boolean }) => void
+  execFun?: () => void
+}
 
-function InfoMessage({ message }: InfoMessageProps) {
+function InfoMessage({ message, setValue, execFun }: InfoMessageProps) {
+  useEffect(() => {
+    setTimeout(() => {
+      setValue({ message, show: false })
+      if (execFun) {
+        execFun()
+      }
+    }, 2500)
+  })
+
   return (
     <div className="infoMessage">
       <p>{message}</p>
     </div>
-  );
+  )
 }
 
-export default InfoMessage;
+export default InfoMessage

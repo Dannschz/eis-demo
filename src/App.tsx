@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { HashRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Nav from './components/Nav'
 import Caja from './pages/Caja'
 // import { InventoryProvider, useInventoryContext } from './Context/inventory';
@@ -29,7 +29,7 @@ export function App() {
   // console.log(globalState);
 
   return (
-    <HashRouter basename="/">
+    <BrowserRouter basename="/">
       <div className="globalContainer">
         <Nav />
         <Switch>
@@ -63,7 +63,7 @@ export function App() {
           <Route exact path="/inventario/códigos" component={BarcodeSection} />
         </Switch>
       </div>
-    </HashRouter>
+    </BrowserRouter>
   )
 }
 export default function AppWrapper() {

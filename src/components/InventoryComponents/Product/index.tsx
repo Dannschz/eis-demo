@@ -26,6 +26,7 @@ type ProductPostMongo = {
   amountType: string;
   measure: string;
   categoryId?: string;
+  categoryName?: string;
   showEAD?: boolean;
   entryProduct?: boolean;
 };
@@ -40,6 +41,7 @@ function Product({
   amountType,
   measure,
   categoryId = '',
+  categoryName,
   showEAD = false,
   entryProduct = true,
 }: ProductPostMongo) {
@@ -84,6 +86,7 @@ function Product({
           <span className="bar" />
         </div>
         <p className="p-item Pname">{name}</p>
+        <p className="p-item">{categoryName}</p>
         <p className="p-item barcodeS">{barcode}</p>
         <p className="p-item">
           $ {measure === MeasureType.g ? price * 1000 : price}

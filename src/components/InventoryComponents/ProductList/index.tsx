@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useGlobalContext } from '../../../Context/globalState';
 import { ProductT } from '../../../types/inventory';
 // import CategoryFilter from '../CategoryFilter';
@@ -17,11 +17,11 @@ function ProductList({
 }: ProductListProps) {
   const { globalState } = useGlobalContext();
   const [searchValue, setSearchValue] = useState('');
-  const [regexp, setRegexp] = useState<RegExp | null>(null);
   const [categoryId, setCategoryId] = useState('');
-  /* const products = categories.map((cat) => {
-    return cat.products;
-  }); */
+
+  const regexp = new RegExp(`\\b${searchValue}`, 'i')
+  
+  console.log(Array.from(globalState.categories.values()))
 
   const handleSearchValueChange = (e: React.FormEvent<HTMLInputElement>) => {
     setSearchValue(e.currentTarget.value);
@@ -30,17 +30,6 @@ function ProductList({
   /* const handleCategoryValueChange = (e: React.FormEvent<HTMLSelectElement>) => {
     setCategoryId(e.currentTarget.value);
   }; */
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-  useEffect(() => {
-    // eslint-disable-next-line no-console
-    /* function isSearchValueEmpty() {
-      if (searchValue)
-    }
-    isSearchValueEmpty(); */
-    setRegexp(new RegExp(`\\b${searchValue}`, 'i'));
-    // console.log(regexSearch);
-  }, [searchValue]);
 
   return (
     <>
@@ -64,6 +53,7 @@ function ProductList({
             <span className="bar"></span>
           </div>
           <span>Descripción</span>
+          <span>Categoría</span>
           <span>Código</span>
           <span>Precio (pieza/kg)</span>
           <span>Existencia</span>
@@ -89,6 +79,7 @@ function ProductList({
                     price={p.price}
                     soldPieces={p.soldPieces}
                     categoryId={cat._id}
+                    categoryName={cat.name}
                     showEAD={showOptions}
                     entryProduct={entryProduct}
                   />
@@ -107,7 +98,7 @@ function ProductList({
                   measure={p.measure}
                   price={p.price}
                   soldPieces={p.soldPieces}
-                  categoryId={globalState.categories.get(categoryId)._id}
+                  categoryId={globalState.categories.get(categoryId)?._id}
                   showEAD={showOptions}
                   entryProduct={entryProduct}
                 />

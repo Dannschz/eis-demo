@@ -1,8 +1,7 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import './styles.global.scss';
-import { useGlobalContext } from '../../../Context/globalState';
-import { NavLinksMenuType } from '../../../types/global';
+import { useGlobalContext } from '../../../Context/globalState'
+import { NavLinksMenuType } from '../../../types/global'
+import NavLinkStyled from './styled'
+import './styles.global.scss'
 
 interface NavLinkMenuProps {
   navLinks: NavLinksMenuType;
@@ -20,17 +19,18 @@ function NavLinkMenu({ navLinks, bgColor = '#d6e1f1' }: NavLinkMenuProps) {
       <nav className="navInsideInventory">
         {navLinks.map((navLink) => {
           return navLink.rol === rol ? (
-            <NavLink
+            <NavLinkStyled
               key={navLink.to}
               className="navInv"
               exact
+              bgcolor={bgColor}
               to={navLink.to}
             >
               <div className="icon">
                 <img src={navLink.imgPath} alt="registrar" />
               </div>
               <span>{navLink.title}</span>
-            </NavLink>
+            </NavLinkStyled>
           ) : null;
         })}
       </nav>

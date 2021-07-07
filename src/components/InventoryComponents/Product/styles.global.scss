@@ -1,9 +1,9 @@
 .showOpts {
-  grid-template-columns: 4px 3fr 2fr 1fr 1fr 0.2fr 0.2fr;
+  grid-template-columns: 4px 3fr 2fr 2fr 1fr 1fr 0.2fr 0.2fr;
 }
 
 .hideOpts {
-  grid-template-columns: 4px 3fr 2fr 1fr 1fr;
+  grid-template-columns: 4px 3fr 2fr 2fr 1fr 1fr;
 }
 
 .Product {
@@ -11,7 +11,7 @@
   width: 100%;
   gap: 5px;
   color: rgb(71, 71, 71);
-  padding: 0.4em;
+  padding: 0.4em 0.6em;
   border-bottom: 2px solid rgba(47, 79, 79, 0.24);
   border-radius: 3px;
   background-color: rgba(188, 209, 229, 0.212);

@@ -77,7 +77,7 @@ function ProductBag({
       setBagAmountValue(bagAmount > amount ? String(0) : String(bagAmount));
       bagAmountInputRef.current?.focus();
     })();
-  }, [bagAmount]);
+  }, [amount, bagAmount]);
 
   return (
     <div className="productBagContainer">

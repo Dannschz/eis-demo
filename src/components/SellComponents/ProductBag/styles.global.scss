@@ -1,9 +1,10 @@
 .productBagContainer {
   display: grid;
   grid-template-columns: 5fr 1.6fr 2fr 1.6fr 0.5fr;
+  width: 98%;
   align-items: center;
   justify-content: center;
-  padding: 0.4em;
+  padding: 0.4em 0.8em;
   font-weight: 500;
   border-bottom: 2px solid rgb(226, 226, 226);
   color: rgb(75, 75, 75);

@@ -10,11 +10,11 @@
   overflow-y: scroll;
 
   .showOpts {
-    grid-template-columns: 4px 4fr 2fr 1.6fr 1fr 0.2fr 0.2fr;
+    grid-template-columns: 4px 4fr 2fr 2fr 1.6fr 1fr 0.2fr 0.2fr;
   }
 
   .hideOpts {
-    grid-template-columns: 4px 4fr 2fr 1.6fr 1fr;
+    grid-template-columns: 4px 4fr 2fr 2fr 1.6fr 1fr;
   }
 
   .ProductListHeader {
@@ -44,7 +44,7 @@
     }
 
     .bulto {
-      width: 1.5em;
+      width: 2em;
       height: 1.5em;
     }
   }

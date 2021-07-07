@@ -33,18 +33,18 @@ export type ProductT = {
   soldPieces: number;
 };
 
-type CatMapMethods = {
+/* type CatMapMethods = {
   get(key: any): CategoryT;
   set(key: string, value: CategoryT): Map<any, any>;
-};
+}; */
 
-type ProductMapMethods = {
+/* type ProductMapMethods = {
   get(key: string): ProductT;
   set(key: string, value: ProductT): Map<any, any>;
   delete(key: string): boolean;
-};
+}; */
 
-export type ProductMap = Map<string, ProductT> & ProductMapMethods;
+export type ProductMap = Map<string, ProductT>;
 
 export type CategoryT = {
   _id: string;
@@ -52,8 +52,13 @@ export type CategoryT = {
   products: ProductMap;
 };
 
-export type CategoryMap = (Map<string, CategoryT> | Array<CategoryT>) &
-  CatMapMethods;
+export type CategoryArray = {
+  _id: string;
+  name: string;
+  products: ProductT[];
+}
+
+export type CategoryMap = Map<string, CategoryT>
 
 export type EditModal = {
   showModal: boolean;
