@@ -20,47 +20,64 @@ import InOutCashSection from './components/CashBoxComponents/InOutCashSection'
 import ProductOutputSection from './components/InventoryComponents/ProductOutputSection'
 import UsersPage from './pages/Users'
 import './App.scss'
+import parseProducts from './utils/parseProducts'
+import fetchDB from './services/fetchDB'
+
+const urlProducts =
+  process.env.NODE_ENV === 'development'
+    ? 'http://127.0.0.1:4000/products'
+    : 'https://eis-ddemo.herokuapp.com/newproduct'
 
 export function App() {
-  // const { dispatch } = useGlobalContext();
+  const { dispatch } = useGlobalContext()
 
-  useEffect(() => {}, [])
+  useEffect(() => {
+    async function setInitialState() {
+      const products = await fetchDB.getProducts()
+      const { catMap, productsMap } = parseProducts(products)
+      dispatch({
+        type: 'SET_INITIAL_INVENTORY_STATE',
+        payload: { catMap, productMap: productsMap }
+      })
+    }
+    setInitialState()
+  }, [dispatch])
 
   // console.log(globalState);
 
   return (
-    <BrowserRouter basename="/">
-      <div className="globalContainer">
+    <BrowserRouter basename='/'>
+      <div className='globalContainer'>
         <Nav />
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/home" component={SalesSection} />
-          <Route exact path="/login" component={LoginSection} />
-          <Route exact path="/signin" component={SignInSection} />
-          <Route exact path="/ventas" component={Ventas} />
-          <Route exact path="/inventario" component={Inventario} />
-          <Route exact path="/caja" component={Caja} />
-          <Route exact path="/caja/corte" component={CutCashSection} />
-          <Route exact path="/caja/inout" component={InOutCashSection} />
-          <Route exact path="/users" component={UsersPage} />
-          <Route exact path="/users/registrar" component={SignInSection} />
+          <Route exact path='/' component={Home} />
+          <Route exact path='/home' component={SalesSection} />
+          <Route exact path='/login' component={LoginSection} />
+          <Route exact path='/signin' component={SignInSection} />
+          <Route exact path='/ventas' component={Ventas} />
+          <Route exact path='/inventario' component={Inventario} />
+          <Route exact path='/caja' component={Caja} />
+          <Route exact path='/caja/corte' component={CutCashSection} />
+          <Route exact path='/caja/inout' component={InOutCashSection} />
+          <Route exact path='/users' component={UsersPage} />
+          <Route exact path='/users/registrar' component={SignInSection} />
           <Route
             exact
-            path="/inventario/registrar"
+            path='/inventario/registrar'
             component={RegisterProductSection}
           />
           <Route
             exact
-            path="/inventario/entradas"
+            path='/inventario/entradas'
             component={EntryProductSection}
           />
           <Route
             exact
-            path="/inventario/salidas"
+            path='/inventario/salidas'
             component={ProductOutputSection}
           />
-          <Route exact path="/inventario/editar" component={EditSection} />
-          <Route exact path="/inventario/códigos" component={BarcodeSection} />
+          <Route exact path='/inventario/editar' component={EditSection} />
+          <Route exact path='/inventario/códigos' component={BarcodeSection} />
         </Switch>
       </div>
     </BrowserRouter>

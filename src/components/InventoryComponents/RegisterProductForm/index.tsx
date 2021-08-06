@@ -2,8 +2,9 @@
 import { useState, useRef, createRef } from 'react'
 import './styles.global.scss'
 import { useGlobalContext } from '../../../Context/globalState'
-import { AmountType, MeasureType } from '../../../types/inventory'
+import { AmountType, MeasureType, ProductT } from '../../../types/inventory'
 import InfoMessage from '../../Utils/InfoMessage'
+import fetchDB from '../../../services/fetchDB'
 
 type RegisterProductProps = {
   barcode?: string
@@ -27,6 +28,8 @@ function RegisterProductForm({
   const categoryOptionInputRef = useRef<HTMLInputElement>(null)
   const barcodeInputRef = createRef<HTMLInputElement>()
   const formRef = createRef<HTMLFormElement>()
+
+  const { dispatch } = useGlobalContext()
 
   const [showInfoMessage, setInfoMessage] = useState({
     message: '',
@@ -87,30 +90,32 @@ function RegisterProductForm({
     setPrice('')
     setCategoryName('')
     barcodeInputRef.current?.focus()
-    const response = await fetch(
-      `${
-        process.env.NODE_ENV === 'development'
-          ? 'http://localhost:4000/newproduct'
-          : 'https://eis-ddemo.herokuapp.com/newproduct'
-      }`,
-      {
-        method: 'POST',
-        body: JSON.stringify({
-          nameValue,
-          barcodeValue,
-          amountValue,
-          amountType,
-          price,
-          measure,
-          soldPieces: 0,
-          categoryType,
-          categoryName
-        }),
-        headers: { 'Content-Type': 'application/json' },
-        mode: 'cors'
-      }
-    )
-    const { message } = await response.json()
+    const { message, productSaved } = await fetchDB.registerNewProduct({
+      barcode: barcodeValue,
+      name: nameValue,
+      amount: +amountValue,
+      amountType,
+      price: +price,
+      measure,
+      categoryName,
+      categoryType,
+      soldPieces: 0
+    })
+    const newProduct: ProductT = {
+      _id: productSaved.productId,
+      name: nameValue,
+      barcode: barcodeValue,
+      amount: +amountValue,
+      amountType,
+      price: +price,
+      measure,
+      soldPieces: 0
+    }
+    dispatch({
+      type: 'NEW_PRODUCT_REGISTER',
+      categoryId: productSaved.categoryId,
+      payload: newProduct
+    })
     if (message === 'created') {
       setInfoMessage({ message: 'Se registro el Producto', show: true })
     } else {
@@ -132,64 +137,66 @@ function RegisterProductForm({
 
   }, [InventoryDispatch]); */
 
+  console.log(categoryName)
+
   return (
     <>
       <form
         ref={formRef}
-        id="regForm"
+        id='regForm'
         className={`regFormC ${barcode && name ? 'isModal' : ''}`}
       >
-        <div className="titleForm">
+        <div className='titleForm'>
           <h3>Registrar nuevo Producto</h3>
         </div>
-        <label className="labelBC" htmlFor="barcodeID">
+        <label className='labelBC' htmlFor='barcodeID'>
           <span>Escané el código de barras</span>
           <input
             ref={barcodeInputRef}
-            type="text"
-            name="barcode"
+            type='text'
+            name='barcode'
             // eslint-disable-next-line jsx-a11y/no-autofocus
             autoFocus
-            id="barcodeID"
+            id='barcodeID'
             value={barcodeValue}
             disabled={!!barcode}
             onChange={onChangeBarcode}
             required
           />
         </label>
-        <label className="labelBC" htmlFor="nameID">
+        <label className='labelBC' htmlFor='nameID'>
           <span>Nombre del Producto</span>
           <input
-            type="text"
-            name="name"
-            id="nameID"
+            type='text'
+            name='name'
+            id='nameID'
             value={nameValue}
             disabled={!!name}
             onChange={onChangeName}
             required
           />
         </label>
-        <fieldset className="amountGroup">
+        <fieldset className='amountGroup'>
           <legend>Cantidad</legend>
-          <div className="agranelOpieza">
-            <label className="amountRadio" htmlFor="pieza">
+          <div className='agranelOpieza'>
+            <label className='amountRadio' htmlFor='pieza'>
               <input
-                type="radio"
-                name="amount"
-                id="pieza"
-                value="pieza"
+                type='radio'
+                name='amount'
+                id='pieza'
+                value='pieza'
                 defaultChecked
                 onChange={handleAmountType}
                 required
               />
               <span>Por pieza</span>
             </label>
-            <label className="amountRadio" htmlFor="granel">
+            <label className='amountRadio' htmlFor='granel'>
               <input
-                type="radio"
-                name="amount"
-                id="granel"
-                value="granel"
+                type='radio'
+                name='amount'
+                id='granel'
+                value='granel'
                 onChange={handleAmountType}
               />
               <span>A granel</span>
@@ -202,103 +209,103 @@ function RegisterProductForm({
               alignItems: 'center'
             }}
           >
-            <label className="labelBC" htmlFor="cantidadID">
+            <label className='labelBC' htmlFor='cantidadID'>
               <input
-                className="amountInput"
-                type="number"
-                name="amount"
+                className='amountInput'
+                type='number'
+                name='amount'
                 value={amountValue === 0 ? '' : amountValue}
-                placeholder="0"
-                id="cantidadID"
-                min="0"
-                step="any"
+                placeholder='0'
+                id='cantidadID'
+                min='0'
+                step='any'
                 // onFocus={}
                 onChange={onChangeAmount}
                 required
               />
             </label>
             {amountType === AmountType.granel ? (
-              <div className="amountKg">
-                <input type="text" value="kg" disabled />
+              <div className='amountKg'>
+                <input type='text' value='kg' disabled />
               </div>
             ) : null}
           </div>
         </fieldset>
-        <fieldset className="amountGroup">
+        <fieldset className='amountGroup'>
           <legend>Precio</legend>
           {amountType === AmountType.granel && (
-            <div className="agranelOpieza">
-              <label className="amountRadio" htmlFor="porKilo">
+            <div className='agranelOpieza'>
+              <label className='amountRadio' htmlFor='porKilo'>
                 <input
-                  type="radio"
-                  name="measure"
-                  id="porKilo"
-                  value="kg"
+                  type='radio'
+                  name='measure'
+                  id='porKilo'
+                  value='kg'
                   defaultChecked
                   onChange={handleMeasureChange}
                   required
                 />
                 <span>Precio por kilo</span>
               </label>
-              <label className="amountRadio" htmlFor="porGramo">
+              <label className='amountRadio' htmlFor='porGramo'>
                 <input
-                  type="radio"
-                  name="measure"
-                  id="porGramo"
-                  value="g"
+                  type='radio'
+                  name='measure'
+                  id='porGramo'
+                  value='g'
                   onChange={handleMeasureChange}
                 />
                 <span>Precio por gramo</span>
               </label>
             </div>
           )}
-          <label className="labelBC" htmlFor="precioID">
+          <label className='labelBC' htmlFor='precioID'>
             <input
-              className="priceInput"
-              type="number"
-              name="price"
+              className='priceInput'
+              type='number'
+              name='price'
               value={price}
-              placeholder="00.00"
-              id="precioID"
-              min="0"
-              step="any"
+              placeholder='00.00'
+              id='precioID'
+              min='0'
+              step='any'
               onChange={onChangePrice}
               required
             />
           </label>
         </fieldset>
-        <fieldset className="amountGroup">
+        <fieldset className='amountGroup'>
           <legend>Categoría</legend>
-          <div className="agranelOpieza">
-            <label className="amountRadio" htmlFor="existenteID">
+          <div className='agranelOpieza'>
+            <label className='amountRadio' htmlFor='existenteID'>
               <input
-                type="radio"
-                name="categoryType"
-                id="existenteID"
-                value="existente"
+                type='radio'
+                name='categoryType'
+                id='existenteID'
+                value='existente'
                 defaultChecked
                 onChange={handleCategoryType}
               />
               <span>Categoría existente</span>
             </label>
-            <label className="amountRadio" htmlFor="nuevaID">
+            <label className='amountRadio' htmlFor='nuevaID'>
               <input
                 ref={categoryOptionInputRef}
-                type="radio"
-                name="categoryType"
-                id="nuevaID"
-                value="nueva"
+                type='radio'
+                name='categoryType'
+                id='nuevaID'
+                value='nueva'
                 onChange={handleCategoryType}
               />
               <span>Nueva Categoría</span>
             </label>
           </div>
           {categoryType === 'existente' && (
-            <div className="amountSelectContainer">
+            <div className='amountSelectContainer'>
               <select
-                className="amountSelect"
-                name="categoryOption"
-                id="categoryOption"
+                className='amountSelect'
+                name='categoryOption'
+                id='categoryOption'
                 defaultValue={categoryOption}
                 onChange={handleCategoryOptionChange}
               >
@@ -315,12 +322,12 @@ function RegisterProductForm({
             </div>
           )}
           {categoryType === 'nueva' && (
-            <label className="labelBC" htmlFor="categoryID">
+            <label className='labelBC' htmlFor='categoryID'>
               <span>Nombre de la categoría</span>
               <input
-                type="text"
-                name="category"
-                id="categoryID"
+                type='text'
+                name='category'
+                id='categoryID'
                 value={categoryName}
                 onChange={handleCategoryName}
               />
@@ -328,8 +335,8 @@ function RegisterProductForm({
           )}
         </fieldset>
         <button
-          className="btnSubmmit"
-          type="button"
+          className='btnSubmmit'
+          type='button'
           disabled={requiredValues(barcodeValue, nameValue, amountValue, price)}
           onClick={handleClickRegister}
         >

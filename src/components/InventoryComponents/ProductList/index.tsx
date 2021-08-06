@@ -21,8 +21,6 @@ function ProductList({
 
   const regexp = new RegExp(`\\b${searchValue}`, 'i')
   
-  console.log(Array.from(globalState.categories.values()))
-
   const handleSearchValueChange = (e: React.FormEvent<HTMLInputElement>) => {
     setSearchValue(e.currentTarget.value);
   };
