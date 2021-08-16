@@ -9,11 +9,13 @@ import './styles.global.scss';
 type ProductListProps = {
   showOptions?: boolean;
   entryProduct?: boolean;
+  otherProp?: string;
 };
 
 function ProductList({
   showOptions = false,
   entryProduct = true,
+  otherProp = '',
 }: ProductListProps) {
   const { globalState } = useGlobalContext();
   const [searchValue, setSearchValue] = useState('');
