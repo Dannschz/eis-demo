@@ -4,7 +4,7 @@ import { UserProfileType } from '../../../types/userprofile'
 import InfoMessage from '../../Utils/InfoMessage'
 import LoginForm from '../LoginForm'
 import NewUserForm from '../NewUserForm'
-import './login.global.scss'
+import './login.scss'
 
 type LoginSectionProps = {
   dispatch: Dispatch

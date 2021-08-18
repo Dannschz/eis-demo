@@ -3,6 +3,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  border-top-left-radius: 2%;
   padding: 0.3em 0;
   background-color: rgb(97, 97, 182);
   color: whitesmoke;
@@ -33,6 +34,7 @@
   position: absolute;
   bottom: 0;
   left: 0;
+  border-bottom-left-radius: 10px;
   width: 100%;
   padding: 0.6em 0;
   background-color: rgb(205, 241, 219);

@@ -1,0 +1,59 @@
+.ticketsC {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+
+  .salesContainer {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    height: 100%;
+
+    .rvtitle {
+      font-size: 1.4em;
+      padding: 0.4em;
+      margin-bottom: 1em;
+      color: rgb(44, 44, 44);
+      background-color: transparent;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+    }
+
+    $cradius: 16px;
+
+    .tc-daySales {
+      height: 100%;
+      border-radius: $cradius;
+      background-color: white;
+      // border: 5px solid rgba(96, 55, 172, 0.664);
+      // outline: 3px solid rgba(85, 56, 179, 0.562);
+      box-shadow: 0 0 8px 2px rgba(57, 59, 143, 0.521);
+
+      .repoVC {
+        display: flex;
+        height: 100%;
+        .tcds-l {
+          display: flex;
+          position: relative;
+          width: 40%;
+          height: 100%;
+          flex-direction: column;
+          align-items: center;
+          border-right: 3px solid rgba(68, 37, 168, 0.342);
+        }
+        .tcds-r {
+          display: flex;
+          position: relative;
+          width: 60%;
+          height: 100%;
+          flex-direction: column;
+          border-top-right-radius: 16px;
+          border-bottom-right-radius: 10px;
+          align-items: center;
+          background-color: whitesmoke;
+        }
+      }
+    }
+  }
+}

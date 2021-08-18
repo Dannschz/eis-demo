@@ -23,11 +23,6 @@ import './App.scss'
 import parseProducts from './utils/parseProducts'
 import fetchDB from './services/fetchDB'
 
-const urlProducts =
-  process.env.NODE_ENV === 'development'
-    ? 'http://127.0.0.1:4000/products'
-    : 'https://eis-ddemo.herokuapp.com/newproduct'
-
 export function App() {
   const { dispatch } = useGlobalContext()
 

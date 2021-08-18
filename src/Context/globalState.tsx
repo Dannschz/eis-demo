@@ -170,8 +170,8 @@ function GlobalProvider({ children }: ProviderProps) {
     daySales: {},
     productsToSell: new ProductBagClass(),
     user: {
-      _id: '1234',
-      id: '1234',
+      _id: '611c38098f6d703be8b7f2eb',
+      id: '673452',
       userName: 'daniel',
       rol: 'ADMIN',
       password: ''

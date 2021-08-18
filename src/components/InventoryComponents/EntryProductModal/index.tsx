@@ -1,21 +1,21 @@
 /* eslint-disable react/require-default-props */
-import { createRef, useEffect, useState } from 'react';
-import { AmountType } from '../../../types/inventory';
-import './entryModal.global.scss';
+import { createRef, useEffect, useState } from 'react'
+import { AmountType } from '../../../types/inventory'
+import './entryModal.scss'
 
 type EntryProductModalProps = {
-  id: string;
-  barcode: string;
-  name: string;
-  amount: number;
-  amountType: string;
-  measure: string;
-  price: number;
-  soldPieces: number;
-  categoryId: string;
-  entryProduct?: boolean;
-  handleCancelButtonFromParent: () => void;
-};
+  id: string
+  barcode: string
+  name: string
+  amount: number
+  amountType: string
+  measure: string
+  price: number
+  soldPieces: number
+  categoryId: string
+  entryProduct?: boolean
+  handleCancelButtonFromParent: () => void
+}
 
 function EntryProductModal({
   id,
@@ -28,64 +28,64 @@ function EntryProductModal({
   soldPieces,
   categoryId,
   handleCancelButtonFromParent,
-  entryProduct,
+  entryProduct
 }: EntryProductModalProps) {
-  const [amountValue, setAmountValue] = useState('0');
-  const amountRef = createRef<HTMLInputElement>();
+  const [amountValue, setAmountValue] = useState('0')
+  const amountRef = createRef<HTMLInputElement>()
 
   const handleAmountChange = (e: React.FormEvent<HTMLInputElement>) => {
-    setAmountValue(e.currentTarget.value);
-  };
+    setAmountValue(e.currentTarget.value)
+  }
 
   const focusAndSelectAmount = () => {
-    amountRef.current?.focus();
-    amountRef.current?.select();
-  };
+    amountRef.current?.focus()
+    amountRef.current?.select()
+  }
 
   const handleCancelButton = () => {
-    handleCancelButtonFromParent();
-  };
+    handleCancelButtonFromParent()
+  }
 
   const handleAddButton = () => {
     setTimeout(() => {
-      handleCancelButtonFromParent();
-    }, 200);
-  };
+      handleCancelButtonFromParent()
+    }, 200)
+  }
 
   useEffect(() => {
-    focusAndSelectAmount();
-  }, []);
+    focusAndSelectAmount()
+  }, [])
 
   return (
-    <div className="entryProductModal">
+    <div className='entryProductModal'>
       <h2>{`Producto: ${name}`}</h2>
-      <label htmlFor="entryAmount">
+      <label htmlFor='entryAmount'>
         <span>Cantidad a {entryProduct ? 'agregar' : 'retirar'}:</span>
         <input
-          className="amountEntryInput"
+          className='amountEntryInput'
           ref={amountRef}
-          type="number"
-          name="amount"
-          id="entryAmount"
-          placeholder="0"
+          type='number'
+          name='amount'
+          id='entryAmount'
+          placeholder='0'
           value={amountValue}
           onChange={handleAmountChange}
         />
-        <span className="pog">
+        <span className='pog'>
           {amountType === AmountType.pieza ? 'pieza(s)' : 'kg'}
         </span>
       </label>
-      <div className="buttonsOption">
+      <div className='buttonsOption'>
         <button
-          className="btnE btnCancel"
-          type="button"
+          className='btnE btnCancel'
+          type='button'
           onClick={handleCancelButton}
         >
           Cancelar
         </button>
         <button
-          className="btnE btnAdd"
-          type="button"
+          className='btnE btnAdd'
+          type='button'
           disabled={Number(amountValue) <= 0}
           onClick={handleAddButton}
         >
@@ -93,7 +93,7 @@ function EntryProductModal({
         </button>
       </div>
     </div>
-  );
+  )
 }
 
-export default EntryProductModal;
+export default EntryProductModal

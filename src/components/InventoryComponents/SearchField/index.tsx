@@ -1,43 +1,43 @@
-import { useEffect, useRef } from 'react';
-import './styles.global.scss';
+import { useEffect, useRef } from 'react'
+import './styles.scss'
 
 type SearchFieldProps = {
-  searchValue: string;
-  handleSearchValueChange(e: React.FormEvent<HTMLInputElement>): void;
-};
+  searchValue: string
+  handleSearchValueChange(e: React.FormEvent<HTMLInputElement>): void
+}
 
 function SearchField({
   searchValue,
-  handleSearchValueChange,
+  handleSearchValueChange
 }: SearchFieldProps) {
-  const textInputRef = useRef<HTMLInputElement>(null);
+  const textInputRef = useRef<HTMLInputElement>(null)
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
-    handleSearchValueChange(e);
-  };
+    handleSearchValueChange(e)
+  }
 
   const handleFocus = (e: React.FormEvent<HTMLInputElement>) => {
-    e.currentTarget.select();
-  };
+    e.currentTarget.select()
+  }
 
   useEffect(() => {
-    textInputRef.current?.focus();
-  }, []);
+    textInputRef.current?.focus()
+  }, [])
 
   return (
-    <label htmlFor="productSearch" className="searchProductField">
+    <label htmlFor='productSearch' className='searchProductField'>
       <input
         ref={textInputRef}
-        type="text"
-        name="search"
-        id="productSearch"
+        type='text'
+        name='search'
+        id='productSearch'
         value={searchValue}
-        placeholder="Buscar Producto: Nombre/Código"
+        placeholder='Buscar Producto: Nombre/Código'
         // eslint-disable-next-line jsx-a11y/no-autofocus
         onChange={handleChange}
         onFocus={handleFocus}
       />
     </label>
-  );
+  )
 }
 
-export default SearchField;
+export default SearchField

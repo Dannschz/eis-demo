@@ -3,7 +3,7 @@ import { useState } from 'react'
 import ProductList from '../ProductList'
 import BackButtonLink from '../../Utils/BackButtonLink/BackButtonLink'
 import InfoMessage from '../../Utils/InfoMessage'
-import './styles.global.scss'
+import './styles.scss'
 import { inventario } from '../../../utils/strRoutes'
 
 function EditSection() {
@@ -18,17 +18,17 @@ function EditSection() {
   // const { dispatch } = useGlobalContext();
 
   return (
-    <section className="EditSection">
+    <section className='EditSection'>
       {/* agregar filtro de categorias */}
       {showDeletedMessage.show && (
         <InfoMessage
-          message="El producto se eliminó correctamente"
+          message='El producto se eliminó correctamente'
           setValue={setShowDeletedMessage}
         />
       )}
       {showEditedMessage.show && (
         <InfoMessage
-          message="El producto se édito correctamente"
+          message='El producto se édito correctamente'
           setValue={setShowEditedMessage}
         />
       )}

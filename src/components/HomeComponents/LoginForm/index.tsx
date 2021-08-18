@@ -3,7 +3,7 @@ import { useState } from 'react';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select'; */
-import './loginform.global.scss';
+import './loginform.scss';
 
 function LoginForm() {
   // const classes = useStyles();

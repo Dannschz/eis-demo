@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import { CategoryT } from '../../../types/inventory';
-import './styles.global.scss';
+import './styles.scss';
 
 type FilterProps = {
   categories: CategoryT[];

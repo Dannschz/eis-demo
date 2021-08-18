@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Dispatch } from '../../../Context/globalState'
 import { CashBoxType } from '../../../types/sell'
-import './cashbox.global.scss'
+import './cashbox.scss'
 
 type CashBoxProps = {
   cashbox: CashBoxType

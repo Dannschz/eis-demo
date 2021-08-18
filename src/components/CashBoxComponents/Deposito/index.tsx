@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Dispatch, useGlobalContext } from '../../../Context/globalState';
-import './deposito.global.scss';
+import './deposito.scss';
 
 type DepositoProps = {
   dispatch: Dispatch;

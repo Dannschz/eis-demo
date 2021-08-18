@@ -3,7 +3,7 @@ import { caja } from '../../../utils/strRoutes';
 import BackButtonLink from '../../Utils/BackButtonLink/BackButtonLink';
 import Deposito from '../Deposito';
 import Retiro from '../Retiro';
-import './inout.global.scss';
+import './inout.scss';
 
 function InOutCashSection() {
   const { globalState, dispatch } = useGlobalContext();

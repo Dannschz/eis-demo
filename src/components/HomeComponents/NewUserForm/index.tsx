@@ -5,7 +5,7 @@ import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
-import './newuser.global.scss'
+import './newuser.scss'
 import UsefulButton from '../../Utils/UsefulButton'
 // import { UserRol } from '../../../types/userprofile';
 // import hashPassword from '../../../utils/hashPassword';

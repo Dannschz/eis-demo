@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import RegisterProductForm from '../RegisterProductForm'
 // import { useGlobalContext } from '../../../Context/globalState';
 import InfoMessage from '../../Utils/InfoMessage'
-import './rmodal.global.scss'
+import './rmodal.scss'
 
 type RegisterProductModalProps = {
   barcode?: string
@@ -29,7 +29,7 @@ function RegisterProductModal({
     >
       {showMessage.show && (
         <InfoMessage
-          message="Se registro el producto correctamente"
+          message='Se registro el producto correctamente'
           setValue={setShowMessage}
           execFun={() => {
             closeRegisterModal()

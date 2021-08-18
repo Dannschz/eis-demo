@@ -3,7 +3,7 @@ import { useGlobalContext } from '../../../Context/globalState'
 import BackButtonLink from '../../Utils/BackButtonLink/BackButtonLink'
 import CashBox from '../CashBox'
 import { caja } from '../../../utils/strRoutes'
-import './cutsection.global.scss'
+import './cutsection.scss'
 
 function CutCashSection() {
   const { globalState, dispatch } = useGlobalContext()

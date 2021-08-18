@@ -1,16 +1,16 @@
 import { useState } from 'react'
 import InfoMessage from '../../Utils/InfoMessage'
 import NewUserForm from '../NewUserForm'
-import './signin.global.scss'
+import './signin.scss'
 
 function SignInSection() {
   const [showMessage, setShowMessage] = useState({ show: false, message: '' })
 
   return (
-    <section className="signInSection">
+    <section className='signInSection'>
       {showMessage.show && (
         <InfoMessage
-          message="Se ha registrado al nuevo usuario"
+          message='Se ha registrado al nuevo usuario'
           setValue={setShowMessage}
         />
       )}

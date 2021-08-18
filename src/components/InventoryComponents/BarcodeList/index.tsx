@@ -1,19 +1,18 @@
-import { useEffect } from 'react';
-import { BarcodesArray } from '../../../types/inventory';
-import BarcodeItem from '../BarcodeItem';
-import './list.global.scss';
+import { useEffect } from 'react'
+import { BarcodesArray } from '../../../types/inventory'
+import BarcodeItem from '../BarcodeItem'
+import './list.scss'
 
 type BarcodeListProps = {
-  barcodes: BarcodesArray;
-  id: string;
-};
+  barcodes: BarcodesArray
+  id: string
+}
 
 function BarcodeList({ barcodes, id }: BarcodeListProps) {
-  useEffect(() => {
-  }, []);
+  useEffect(() => {}, [])
 
   return (
-    <div id={id} className="barcodeList">
+    <div id={id} className='barcodeList'>
       {barcodes.map((barcode) => {
         return barcode ? (
           <BarcodeItem
@@ -21,10 +20,10 @@ function BarcodeList({ barcodes, id }: BarcodeListProps) {
             name={barcode.name}
             barcode={barcode.barcode}
           />
-        ) : null;
+        ) : null
       })}
     </div>
-  );
+  )
 }
 
-export default BarcodeList;
+export default BarcodeList

@@ -5,7 +5,7 @@ import { ProductBagClass } from '../../../types/sell'
 import BagSellModal from '../BagSellModal'
 import ProductBag from '../ProductBag'
 import checkedSellIcon from '../../../img/checkedSell.svg'
-import './styles.global.scss'
+import './styles.scss'
 
 type ShoppingBagProps = {
   productsToSell: ProductBagClass
@@ -43,9 +43,9 @@ function ShoppingBag({ productsToSell, dispatch }: ShoppingBagProps) {
         setShowMessageDone(false)
       }, 2500)
       return (
-        <div ref={messageRef} className="sellDoneMessage showMessage">
+        <div ref={messageRef} className='sellDoneMessage showMessage'>
           <p>Venta finalizada</p>
-          <img src={checkedSellIcon} alt="ok" />
+          <img src={checkedSellIcon} alt='ok' />
         </div>
       )
     }
@@ -59,10 +59,10 @@ function ShoppingBag({ productsToSell, dispatch }: ShoppingBagProps) {
   useEffect(() => {}, [])
 
   return (
-    <div className="shoppingBagMain">
-      <div className="shoppingBagSell">
-        <div className="hgs-c">
-          <div className="headerGridShop">
+    <div className='shoppingBagMain'>
+      <div className='shoppingBagSell'>
+        <div className='hgs-c'>
+          <div className='headerGridShop'>
             <span>Producto</span>
             <span>$ por unidad</span>
             <span>Cantidad</span>
@@ -83,22 +83,22 @@ function ShoppingBag({ productsToSell, dispatch }: ShoppingBagProps) {
             />
           )
         })}
-        <div className="totalAmount">
+        <div className='totalAmount'>
           <span>{`Total: $${productsToSell.getTotal()}`}</span>
         </div>
       </div>
-      <div className="sellButtonContainer">
+      <div className='sellButtonContainer'>
         <button
-          className="sobtn cancelButton"
-          type="button"
+          className='sobtn cancelButton'
+          type='button'
           disabled={!(Object.entries(productsToSell.products).length > 0)}
           onClick={handleCleanButton}
         >
           Limpiar
         </button>
         <button
-          className="sobtn sellButton"
-          type="button"
+          className='sobtn sellButton'
+          type='button'
           disabled={
             !(Object.entries(productsToSell.products).length > 0) ||
             productsToSell.getTotal() === 0

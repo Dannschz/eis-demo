@@ -1,10 +1,10 @@
 /* eslint-disable react/require-default-props */
 import { useState, useRef, createRef } from 'react'
-import './styles.global.scss'
 import { useGlobalContext } from '../../../Context/globalState'
 import { AmountType, MeasureType, ProductT } from '../../../types/inventory'
 import InfoMessage from '../../Utils/InfoMessage'
 import fetchDB from '../../../services/fetchDB'
+import './styles.scss'
 
 type RegisterProductProps = {
   barcode?: string

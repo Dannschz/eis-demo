@@ -38,6 +38,11 @@
       .selectedNavLink {
         pointer-events: none;
         cursor: default;
+        background: linear-gradient(
+          45deg,
+          hsla(173, 89%, 70%, 1) 0%,
+          hsla(196, 68%, 38%, 1) 100%
+        );
       }
     }
   }
@@ -45,7 +50,6 @@
   .navI .unL .aLink:hover {
     background-color: rgba(86, 235, 223, 0.281);
   }
-
 }
 
 .MuiTooltip-popper {

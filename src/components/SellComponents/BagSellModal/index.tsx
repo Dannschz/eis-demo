@@ -2,8 +2,9 @@
 /* eslint-disable no-underscore-dangle */
 import React, { createRef, useEffect, useRef, useState } from 'react'
 import { useGlobalContext } from '../../../Context/globalState'
+import fetchDB from '../../../services/fetchDB'
 import { ProductBagType } from '../../../types/sell'
-import './styles.global.scss'
+import './styles.scss'
 
 type BagSellModalProps = {
   total: number
@@ -37,16 +38,30 @@ function BagSellModal({
     inputRef.current?.select()
   }
 
-  const handleFinishSellButton = () => {
+  const handleFinishSellButton = async () => {
     /* if (Object.keys(globalState.daySales).length === 0) {
     } */
+    const date = new Date()
     handleFinishSellButtonFromParent()
+    const res = await fetchDB.registerNewSale({
+      folio: +Date.now().toString().substring(5),
+      date,
+      seller: globalState.user._id ?? '',
+      concepts: Object.values(products).map((p) => ({
+        product: p._id,
+        amount: p.bagAmount
+      })),
+      totalValue: total,
+      cashReceived: +cashIn,
+      change: +cashIn - total
+    })
+    const { saved } = await res.json()
+    console.log(saved)
     const newCash = globalState.cashBox.sold + total
     dispatch({
       type: 'FINALIZE_SALE',
       payload: { newCash }
     })
-    
     handleCancelButtonFromParent()
     handleSellDoneMessage()
   }

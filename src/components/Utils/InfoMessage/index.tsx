@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import './info.global.scss'
+import './info.scss'
 
 type InfoMessageProps = {
   message: string
@@ -18,7 +18,7 @@ function InfoMessage({ message, setValue, execFun }: InfoMessageProps) {
   })
 
   return (
-    <div className="infoMessage">
+    <div className='infoMessage'>
       <p>{message}</p>
     </div>
   )

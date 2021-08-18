@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
-import React from 'react'
-import './button.global.scss'
+import { ButtonStyled } from './styled'
+import './button.scss'
 
 type UsefulButtonProps = {
+  children: React.ReactNode
   img?: string
   fontSize?: number
   color: string
@@ -11,7 +12,7 @@ type UsefulButtonProps = {
   handleClick: () => void
 }
 
-const UsefulButton: React.FC<UsefulButtonProps> = ({
+function UsefulButton({
   children,
   img = '',
   fontSize = 1,
@@ -19,7 +20,7 @@ const UsefulButton: React.FC<UsefulButtonProps> = ({
   width = 100,
   disabled = false,
   handleClick = () => null
-}) => {
+}: UsefulButtonProps) {
   /* const ubclasses = CSS({
     width: units.pct(width),
   });
@@ -39,15 +40,18 @@ const UsefulButton: React.FC<UsefulButtonProps> = ({
 
   return (
     <div className={`usefulButton`}>
-      <button
+      <ButtonStyled
         className={`buttonBody ${img ? 'withIcon' : 'withoutIcon'}`}
-        type="button"
+        type='button'
         onClick={handleClick}
         disabled={disabled}
+        color={color}
+        fontSize={fontSize}
+        width={width}
       >
         {img && <img src={img} alt={img} />}
-        <p className="btnText">{children}</p>
-      </button>
+        <p className='btnText'>{children}</p>
+      </ButtonStyled>
     </div>
   )
 }
