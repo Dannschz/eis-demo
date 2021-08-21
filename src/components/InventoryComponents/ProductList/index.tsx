@@ -13,7 +13,7 @@ type ProductListProps = {
 
 function ProductList({
   showOptions = false,
-  entryProduct = true
+  entryProduct = true,
 }: ProductListProps) {
   const { globalState } = useGlobalContext()
   const [searchValue, setSearchValue] = useState('')
