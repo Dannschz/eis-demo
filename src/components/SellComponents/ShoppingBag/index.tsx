@@ -1,10 +1,11 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Dispatch } from '../../../Context/globalState'
 import { ProductBagClass } from '../../../types/sell'
 import BagSellModal from '../BagSellModal'
 import ProductBag from '../ProductBag'
-import checkedSellIcon from '../../../img/checkedSell.svg'
+import SellDoneMessage from '../SellDoneMessage'
+// import checkedSellIcon from '../../../img/checkedSell.svg'
 import './styles.scss'
 
 type ShoppingBagProps = {
@@ -16,7 +17,7 @@ function ShoppingBag({ productsToSell, dispatch }: ShoppingBagProps) {
   const [showBagModal, setShowBagModal] = useState(false)
   const [showMessageDone, setShowMessageDone] = useState(false)
   const [saveSellDone, setSaveSellDone] = useState(false)
-  const messageRef = useRef<HTMLDivElement>(null)
+  // const messageRef = useRef<HTMLDivElement>(null)
 
   const handlePayButton = () => {
     setShowBagModal(!showBagModal)
@@ -27,29 +28,12 @@ function ShoppingBag({ productsToSell, dispatch }: ShoppingBagProps) {
     setShowBagModal(false)
   }
 
-  const handleFinishSellButtonChild = () => {}
+  const handleFinishSellButtonChild = () => {
+    setSaveSellDone(true)
+  }
 
   const handleCleanButton = () => {
     dispatch({ type: 'CLEAN_BAG' })
-  }
-
-  const showSellDoneMessage = (): React.ReactNode => {
-    if (showMessageDone && saveSellDone) {
-      setTimeout(() => {
-        messageRef.current?.classList.remove('showMessage')
-        messageRef.current?.classList.add('ocultMessage')
-      }, 2000)
-      setTimeout(() => {
-        setShowMessageDone(false)
-      }, 2500)
-      return (
-        <div ref={messageRef} className='sellDoneMessage showMessage'>
-          <p>Venta finalizada</p>
-          <img src={checkedSellIcon} alt='ok' />
-        </div>
-      )
-    }
-    return null
   }
 
   const handleSetSellMessageFromParent = () => {
@@ -108,11 +92,17 @@ function ShoppingBag({ productsToSell, dispatch }: ShoppingBagProps) {
           Cobrar
         </button>
       </div>
-      {showSellDoneMessage()}
+      {showMessageDone && (
+        <SellDoneMessage
+          saveSellDone={saveSellDone}
+          setShowMessage={setShowMessageDone}
+          showMessageDone={showMessageDone}
+        />
+      )}
       {showBagModal && (
         <BagSellModal
           total={productsToSell.getTotal()}
-          products={productsToSell.products}
+          productsToSell={productsToSell}
           handleCancelButtonFromParent={handleCancelButtonChild}
           handleFinishSellButtonFromParent={handleFinishSellButtonChild}
           handleSellDoneMessage={handleSetSellMessageFromParent}

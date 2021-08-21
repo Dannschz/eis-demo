@@ -2,13 +2,14 @@
 /* eslint-disable no-underscore-dangle */
 import React, { createRef, useEffect, useRef, useState } from 'react'
 import { useGlobalContext } from '../../../Context/globalState'
-import fetchDB from '../../../services/fetchDB'
-import { ProductBagType } from '../../../types/sell'
+import fetchInventoryDB from '../../../services/fetchDB/fetchInventoryDB'
+import { ProductBagClass } from '../../../types/sell'
+import parseProducts from '../../../utils/parseProducts'
 import './styles.scss'
 
 type BagSellModalProps = {
   total: number
-  products: ProductBagType
+  productsToSell: ProductBagClass
   handleCancelButtonFromParent: () => void
   handleFinishSellButtonFromParent: () => void
   handleSellDoneMessage: () => void
@@ -16,7 +17,7 @@ type BagSellModalProps = {
 
 function BagSellModal({
   total,
-  products,
+  productsToSell,
   handleCancelButtonFromParent,
   handleFinishSellButtonFromParent,
   handleSellDoneMessage
@@ -43,25 +44,30 @@ function BagSellModal({
     } */
     const date = new Date()
     handleFinishSellButtonFromParent()
-    const res = await fetchDB.registerNewSale({
+    const res = await fetchInventoryDB.registerNewSale({
       folio: +Date.now().toString().substring(5),
       date,
       seller: globalState.user._id ?? '',
-      concepts: Object.values(products).map((p) => ({
-        product: p._id,
-        amount: p.bagAmount
+      concepts: Object.values(productsToSell.products).map((p) => ({
+        product: p,
+        bagAmount: p.bagAmount
       })),
       totalValue: total,
       cashReceived: +cashIn,
       change: +cashIn - total
     })
-    const { saved } = await res.json()
-    console.log(saved)
+    const { categories } = await res.json()
+    const { catMap, productsMap } = parseProducts(JSON.parse(categories))
+    dispatch({
+      type: 'UPDATE_AMOUNT_PRODUCTS',
+      payload: { catMap, products: productsMap }
+    })
     const newCash = globalState.cashBox.sold + total
     dispatch({
       type: 'FINALIZE_SALE',
       payload: { newCash }
     })
+    // dispatch({type: 'UPDATE_AMOUNT_PRODUCTS', payload: {}})
     handleCancelButtonFromParent()
     handleSellDoneMessage()
   }

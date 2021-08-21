@@ -1,5 +1,5 @@
-import { SaleTypeMongoose, SaleType } from './../../types/sell'
-import { PreProduct } from './../../types/inventory'
+import { SaleTypeMongoose, SaleType } from '../../types/sell'
+import { PreProduct } from '../../types/inventory'
 
 const baseUrl =
   process.env.NODE_ENV === 'development'
@@ -11,16 +11,16 @@ type NewProductResType = {
   productSaved: { productId: string; categoryId: string }
 }
 
-class FetchDB {
-  private static instance: FetchDB
+class FetchInventoryDB {
+  private static instance: FetchInventoryDB
 
   private constructor() {}
 
   public static getInstance() {
-    if (!FetchDB.instance) {
-      FetchDB.instance = new FetchDB()
+    if (!FetchInventoryDB.instance) {
+      FetchInventoryDB.instance = new FetchInventoryDB()
     }
-    return FetchDB.instance
+    return FetchInventoryDB.instance
   }
 
   public async getProducts() {
@@ -45,7 +45,7 @@ class FetchDB {
     return { message, productSaved }
   }
 
-  public async registerNewSale(sale: SaleTypeMongoose) {
+  public async registerNewSale(sale: SaleTypeMongoose): Promise<Response> {
     const response = await fetch(`${baseUrl}/newsale`, {
       method: 'POST',
       body: JSON.stringify(sale),
@@ -55,7 +55,7 @@ class FetchDB {
     return response
   }
 
-  public async getDaySales(): Promise<SaleType[] | null> {
+  public async getDaySales(): Promise<SaleType[] | []> {
     const response = await fetch(`${baseUrl}/todaysales`, {
       method: 'GET',
       mode: 'cors'
@@ -64,10 +64,41 @@ class FetchDB {
       const data = await response.json()
       return JSON.parse(data.sales)
     }
-    return null
+    return []
+  }
+
+  public async getMonthSales(month: number): Promise<SaleType[] | []> {
+    const response = await fetch(`${baseUrl}/monthsales/${month}`, {
+      method: 'GET',
+      mode: 'cors'
+    })
+    if (response.status === 200) {
+      const data = await response.json()
+      return JSON.parse(data.sales)
+    }
+    return []
+  }
+
+  public async deteleProduct({
+    categoryID,
+    productID,
+    productBarcode
+  }: {
+    categoryID: string
+    productID: string
+    productBarcode: string
+  }) {
+    const response = await fetch(`${baseUrl}/deleteproduct`, {
+      method: 'PUT',
+      body: JSON.stringify({ categoryID, productID, productBarcode }),
+      headers: { 'Content-Type': 'application/json' },
+      mode: 'cors'
+    })
+
+    return response
   }
 }
 
-const fetchDB = FetchDB.getInstance()
+const fetchInventoryDB = FetchInventoryDB.getInstance()
 
-export default fetchDB
+export default fetchInventoryDB

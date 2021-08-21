@@ -1,12 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-expressions */
-/* eslint-disable no-underscore-dangle */
-import React from 'react'
 import { AmountType, MeasureType } from '../../../types/inventory'
 import { ConceptType, SaleType } from '../../../types/sell'
 import './ticket.scss'
 
 type TicketProps = {
-  sale: SaleType | null
+  sale: SaleType
 }
 
 function TicketDetail({ sale }: TicketProps) {
@@ -14,20 +11,20 @@ function TicketDetail({ sale }: TicketProps) {
     let total = 0
     concepts.forEach((c) => {
       c.product.measure === MeasureType.g
-        ? (total += c.product.price * 1000 * c.amount)
-        : (total += c.product.price * c.amount)
+        ? (total += c.product.price * 1000 * c.bagAmount)
+        : (total += c.product.price * c.bagAmount)
     })
     return total
   }
 
   const getAmountConversion = (concept: ConceptType) => {
-    if (concept.amount < 1) {
+    if (concept.bagAmount < 1) {
       if (concept.product.amountType === AmountType.granel) {
-        return `${concept.amount * 1000}g`
+        return `${concept.bagAmount * 1000}g`
       }
-      return `${concept.amount}kg`
+      return `${concept.bagAmount}kg`
     }
-    return `${concept.amount}`
+    return `${concept.bagAmount}`
   }
 
   return (
@@ -57,8 +54,8 @@ function TicketDetail({ sale }: TicketProps) {
                     <p className='cc-item'>
                       $
                       {concept.product.measure === MeasureType.g
-                        ? concept.product.price * 1000 * concept.amount
-                        : concept.product.price * concept.amount}
+                        ? concept.product.price * 1000 * concept.bagAmount
+                        : concept.product.price * concept.bagAmount}
                     </p>
                   </li>
                 )

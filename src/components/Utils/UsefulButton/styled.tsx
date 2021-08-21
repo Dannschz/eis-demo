@@ -14,7 +14,7 @@ export const ButtonStyled = styled.button<{
     `${props.fontSize ? props.fontSize * 0.6 : ''}em`};
   border: ${(props) => `4px solid ${props.color}`};
 
-  &::hover {
+  &:hover {
     background-color: ${(props) => props.color};
     color: whitesmoke;
   }

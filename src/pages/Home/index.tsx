@@ -6,9 +6,15 @@ import { useGlobalContext } from '../../Context/globalState';
 import { UserProfileType, UserRol } from '../../types/userprofile';
 import './home.scss';
 
+const f: React.Dispatch<React.SetStateAction<number>> = (s: number | ((presS: number) => number)) => {
+  return s
+}
+
+f(78)
+
 function Home() {
   const history = useHistory();
-  const [users, setUsers] = useState<UserProfileType[]>([]);
+  const [users, _] = useState<UserProfileType[]>([]);
   const { globalState, dispatch } = useGlobalContext();
 
   useEffect(() => {

@@ -8,6 +8,8 @@ import EntryProductModal from '../EntryProductModal'
 import EditProductModal from '../EditProductModal'
 import ConfirmationMessage from '../../Utils/ConfirmationMessage'
 import './styles.scss'
+import { useGlobalContext } from '../../../Context/globalState'
+import fetchInventoryDB from '../../../services/fetchDB/fetchInventoryDB'
 
 const EditTooltip = withStyles((theme) => ({
   tooltip: {
@@ -49,12 +51,25 @@ function Product({
   const [showEditModal, setShowEditModal] = useState(false)
   const [showConfirmMessage, setCofirmMessage] = useState(false)
 
+  const { dispatch } = useGlobalContext()
+
   const showConfirmMessageModal = () => {
     setCofirmMessage(true)
   }
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     setCofirmMessage(false)
+    const res = await fetchInventoryDB.deteleProduct({
+      categoryID: categoryId,
+      productID: productId,
+      productBarcode: barcode
+    })
+    if (res.status === 200) {
+      dispatch({
+        type: 'DELETE_PRODUCT',
+        payload: { categoryId, productBarcode: barcode }
+      })
+    }
   }
 
   const handleClickProduct = () => {

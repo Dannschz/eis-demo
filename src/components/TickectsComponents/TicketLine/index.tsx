@@ -30,8 +30,8 @@ function TicketLine({
     products.forEach((p) => {
       total +=
         p.product.measure === MeasureType.g
-          ? p.product.price * 1000 * p.amount
-          : p.product.price * p.amount
+          ? p.product.price * 1000 * p.bagAmount
+          : p.product.price * p.bagAmount
     })
     return total
   }

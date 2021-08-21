@@ -3,7 +3,7 @@ import { useState, useRef, createRef } from 'react'
 import { useGlobalContext } from '../../../Context/globalState'
 import { AmountType, MeasureType, ProductT } from '../../../types/inventory'
 import InfoMessage from '../../Utils/InfoMessage'
-import fetchDB from '../../../services/fetchDB'
+import fetchInventoryDB from '../../../services/fetchDB/fetchInventoryDB'
 import './styles.scss'
 
 type RegisterProductProps = {
@@ -90,7 +90,7 @@ function RegisterProductForm({
     setPrice('')
     setCategoryName('')
     barcodeInputRef.current?.focus()
-    const { message, productSaved } = await fetchDB.registerNewProduct({
+    const { message, productSaved } = await fetchInventoryDB.registerNewProduct({
       barcode: barcodeValue,
       name: nameValue,
       amount: +amountValue,

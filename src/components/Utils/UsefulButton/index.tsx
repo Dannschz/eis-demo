@@ -21,25 +21,9 @@ function UsefulButton({
   disabled = false,
   handleClick = () => null
 }: UsefulButtonProps) {
-  /* const ubclasses = CSS({
-    width: units.pct(width),
-  });
-
-  const classes = CSS({
-    backgroundColor: 'whitesmoke',
-    color,
-    fontSize: units.em(fontSize),
-    paddingTop: units.em(fontSize * 0.6),
-    paddingBottom: units.em(fontSize * 0.6),
-    border: [color, units.px(4), 'solid'],
-    onHover: {
-      backgroundColor: color,
-      color: 'whitesmoke',
-    },
-  }); */
 
   return (
-    <div className={`usefulButton`}>
+    <div className={`usefulButton`} style={{ width: `${width}%` }}>
       <ButtonStyled
         className={`buttonBody ${img ? 'withIcon' : 'withoutIcon'}`}
         type='button'

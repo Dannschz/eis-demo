@@ -1,7 +1,13 @@
 import React, { useState } from 'react'
+import MonthSelector from './MonthSelector';
 import './datesaleselector.scss'
 
-function DateSaleSelector() {
+type DateSelectorProps = {
+  setFilterSelector(value: string): void
+  setMonthValue(month: number): void
+}
+
+function DateSaleSelector({ setFilterSelector, setMonthValue }: DateSelectorProps) {
   const [optValue, setOptValue] = useState('hoy')
   const [delDate, setDelDate] = useState('')
   const [alDate, setAlDate] = useState('')
@@ -9,6 +15,7 @@ function DateSaleSelector() {
   console.log(optValue, delDate, alDate)
 
   const handleOptChangeValue = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setFilterSelector(e.currentTarget.value)
     setOptValue(e.currentTarget.value)
   }
 
@@ -20,27 +27,6 @@ function DateSaleSelector() {
   }
 
   const showOptions = () => {
-    if (optValue === 'mes') {
-      return (
-        <label className='dss-label' htmlFor='byMonth'>
-          <span>Elige un Mes</span>
-          <select className='dss-mesOpt' name='mesOpt'>
-            <option value='enero'>Enero</option>
-            <option value='febrero'>Febrero</option>
-            <option value='marzo'>Marzo</option>
-            <option value='abril'>Abril</option>
-            <option value='mayo'>Mayo</option>
-            <option value='junio'>Junio</option>
-            <option value='julio'>Julio</option>
-            <option value='agosto'>Agosto</option>
-            <option value='septiembre'>Septiembre</option>
-            <option value='octubre'>Octubre</option>
-            <option value='noviembre'>Noviembre</option>
-            <option value='diciembre'>Diciembre</option>
-          </select>
-        </label>
-      )
-    }
     if (optValue === 'periodo') {
       return (
         <>
@@ -90,6 +76,7 @@ function DateSaleSelector() {
         <option value='mes'>Por Mes</option>
         <option value='periodo'>Periodo</option>
       </select>
+      {optValue === 'mes' && <MonthSelector setParentMonth={setMonthValue} />}
       {showOptions()}
     </div>
   )

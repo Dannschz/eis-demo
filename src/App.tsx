@@ -21,14 +21,14 @@ import ProductOutputSection from './components/InventoryComponents/ProductOutput
 import UsersPage from './pages/Users'
 import './App.scss'
 import parseProducts from './utils/parseProducts'
-import fetchDB from './services/fetchDB'
+import fetchInventoryDB from './services/fetchDB/fetchInventoryDB'
 
 export function App() {
   const { dispatch } = useGlobalContext()
 
   useEffect(() => {
     async function setInitialState() {
-      const products = await fetchDB.getProducts()
+      const products = await fetchInventoryDB.getProducts()
       const { catMap, productsMap } = parseProducts(products)
       dispatch({
         type: 'SET_INITIAL_INVENTORY_STATE',
